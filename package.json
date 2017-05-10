@@ -1,0 +1,21 @@
+{
+  "name": "massive-web",
+  "description": "Manage your js components",
+  "main": "src/core.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/massiveart/web-js.git"
+  },
+  "keywords": [
+    "js",
+    "components",
+    "management"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/massiveart/web-js/issues"
+  },
+  "dependencies": {
+    "jquery": ">=1.7.2"
+  }
+}
