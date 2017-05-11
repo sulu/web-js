@@ -17,5 +17,6 @@
   },
   "dependencies": {
     "jquery": ">=1.7.2"
-  }
+  },
+  "version": "0.0.0"
 }
