@@ -56,6 +56,35 @@ var core = core || (function() {
         },
 
         /**
+         * Call multiple services functions by specified arguments
+         * @param {Array} services
+         * @method callServices
+         */
+        callServices: function(services) {
+            $.each(services, function(index, service) {
+                this.callService(service.name, service.func, service.args);
+            }.bind(this));
+        },
+
+        /**
+         * Call a service function by specified arguments
+         * @param {string} name
+         * @param {string} func
+         * @param {string} args
+         * @method callService
+         * @return {Object} service instance
+         */
+        callService: function(name, func, args) {
+            var service = this.getService(name);
+
+            if (!service) {
+                throw new Error('Service with the name: ' + name + ' is not defined.');
+            }
+
+            return service[func].apply(service, args);
+        },
+
+        /**
          * Extend from the base component class and store the reference
          * @param {String} name - Component blueprint
          * @param {Object} protoProps - Properties of our defined component
