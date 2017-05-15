@@ -19,27 +19,76 @@ npm install massive-web
 
 ## Create your first component
 
-Create a component and export it as a module:
+A component can be created using different js patterns:
+
+ - [Revealing pattern](https://addyosmani.com/resources/essentialjsdesignpatterns/book/#revealingmodulepatternjavascript)
+ - [Prototype pattern](https://addyosmani.com/resources/essentialjsdesignpatterns/book/#prototypepatternjavascript)
+ - [ECMAScript 2015 class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
+
+**Using Revealing pattern**
 
 ```js
-// src/components/test.js
+// src/components/test-revealing-pattern.js
 
-module.exports = {
-    /**
-     * @method initialize
-     */
-    initialize: function () {
-        this.text = this.options.text;
-        this.$el.click(this.sayHello.bind(this));
-    },
+module.exports = (function() {
+    var test = {};
 
-    /**
-     * @method sayHello
-     */
-    sayHello: function () {
+    test.initialize = function($el, options) {
+        test.text = options.text;
+        $el.click(test.say.bind(this));
+    };
+
+    test.say = function() {
+        alert(test.text);
+    }
+
+    return {
+        initialize: test.initialize,
+        initialize: test.say
+    };
+});
+```
+
+**Using Prototype pattern**
+
+```js
+// src/components/test-prototype-pattern.js
+
+var test = function() {};
+
+test.prototype.initialize = function($el, options) {
+    this.text = options.text;
+    $el.click(this.say.bind(this));
+};
+
+test.prototype.say = function() {
+    alert(this.test);
+};
+
+module.exports = test;
+```
+
+**Using ECMAScript 2015 class**
+
+```js
+// src/components/test-class.js
+
+class Test {
+    constructor() {
+        this.text = '';
+    }
+
+    initialize($el, options) {
+        this.text = options.text;
+        $el.click(this.say);
+    }
+
+    say() {
         alert(this.text);
     }
-};
+}
+
+module.exports Test;
 ```
 
 ## Create your first service
@@ -67,7 +116,8 @@ var web = window.web = require('massive.web');
 web.registerService('logger', require('./services/log.js'));
 
 // components
-web.registerComponent('test', require('./component/test.js'));
+web.registerComponent('test', require('./component/test-revealing-pattern.js'));
+web.registerComponent('test', require('./component/test-revealing-pattern.js'));
 ```
 
 ## Embedding in template

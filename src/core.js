@@ -1,189 +1,249 @@
+// Application Sandbox
+
+'use strict';
+
 var $ = require('jquery');
-var BaseComponent = require('./component.js');
 
 /**
  * Web container for all components and services.
  */
-var core = core || (function() {
-    'use strict';
+var web = (function web() {
+    /**
+     * Declare & define web and private variables
+     * @private
+     */
+    var web = {};
+    var services = {};
+    var components = {};
+    var componentInstances = {};
 
-    return {
-        /**
-         * Registered services
-         * @property services
-         * @private
-         */
-        services: {},
+    // ------- SERVICE HANDLING -------
 
-        /**
-         * Registered components
-         * @property components
-         * @private
-         */
-        components: {},
-
-        /**
-         * Started components
-         * @property componentInstances
-         * @private
-         */
-        componentInstances: {},
-
-        /**
-         * Defines a new service
-         * @params {String} name
-         * @params {Object} service
-         * @return {Object} this
-         */
-        registerService: function(name, Service) {
-            if (!this.services[name]) {
-                this.services[name] = Service;
-            }
-            return this;
-        },
-
-        /**
-         * Get the service by name
-         * @params {String} name
-         * @return {Object} service instance
-         */
-        getService: function(name) {
-            var Service = this.services[name] || null;
-            if (typeof Service === 'function') {
-                Service = this.services[name] = new Service(this);
-            }
-            return Service;
-        },
-
-        /**
-         * Call multiple services functions by specified arguments
-         * @param {Array} services
-         * @method callServices
-         */
-        callServices: function(services) {
-            $.each(services, function(index, service) {
-                this.callService(service.name, service.func, service.args);
-            }.bind(this));
-        },
-
-        /**
-         * Call a service function by specified arguments
-         * @param {string} name
-         * @param {string} func
-         * @param {string} args
-         * @method callService
-         * @return {Object} service instance
-         */
-        callService: function(name, func, args) {
-            var service = this.getService(name);
-
-            if (!service) {
-                throw new Error('Service with the name: ' + name + ' is not defined.');
-            }
-
-            return service[func].apply(service, args);
-        },
-
-        /**
-         * Extend from the base component class and store the reference
-         * @param {String} name - Component blueprint
-         * @param {Object} protoProps - Properties of our defined component
-         * @return {Object} this
-         */
-        registerComponent: function(name, protoProps) {
-            var parent = BaseComponent;
-            var component, Surrogate;
-            component = function() {
-                parent.apply(this, arguments);
-            };
-            $.extend(component, parent);
-            Surrogate = function() {
-                this.constructor = component;
-            };
-            Surrogate.prototype = parent.prototype;
-            component.prototype = new Surrogate();
-            $.extend(component.prototype, protoProps);
-            component.__super__ = parent.prototype;
-            this.components[name] = component;
-            return this;
-        },
-
-        /**
-         * Stats a new component from the component blueprint and returns the reference
-         * @param {String} name
-         * @param {String} id
-         * @param {Object} options
-         * @return {Object} component instance
-         */
-        startComponent: function(name, id, options) {
-            options = options || {};
-            var Component = this.components[name];
-            var instance;
-            if (!!Component) {
-                instance = new Component(id, options, this);
-                this.componentInstances[id] = instance;
-            } else {
-                throw new Error('Component with the type: ' + name + ' is not defined.');
-            }
-            return instance;
-        },
-
-        /**
-         * Stats a new component from the component blueprint and returns the reference
-         * @param {Array} components
-         * @return {Object} component instance
-         */
-        startComponents: function(components) {
-            var instances = [];
-
-            $.each(components, function(index, component) {
-                try {
-                    instances[index] = this.startComponent(component.name, component.id, component.options);
-                } catch(e) {
-                    console.error('Start of component failed: ' + component.id);
-                    console.error(e);
-                }
-            }.bind(this));
-            return instances;
-        },
-
-        /**
-         * Get a Component instance by id
-         * @param {String} id - component instance identifier defined with the "startComponent" method
-         * @return {Object} component instance
-         */
-        getComponent: function(id) {
-            return this.componentInstances[id] || null;
-        },
-
-        /**
-         * Facade for destroying a component
-         * @param {Object|String} component Could be an instance or the component id
-         * @return {Object}
-         */
-        removeComponent: function(component) {
-            if (typeof component === 'string') {
-                this.destroyComponent(component);
-            } else {
-                this.destroyComponent(component.id);
-            }
-            return this;
-        },
-
-        /**
-         * Destroys a component and removes its DOM element
-         * @param {String} id
-         * @private
-         */
-        destroyComponent: function(id) {
-            var instance = this.componentInstances[id];
-            if (!!instance) {
-                instance.destroy.call(instance);
-                delete this.componentInstances[id];
-            }
-            return this;
+    /**
+     * Define a new service
+     * @method registerService
+     * @param {String} name
+     * @param {Object} service
+     */
+    web.registerService = function registerService(name, service) {
+        if (typeof services[name] === 'undefined') {
+            services[name] = service;
         }
     };
+
+    /**
+     * Get the service by name
+     * @param {String} name
+     * @method getService
+     * @return {Object} service interface
+     */
+    web.getService = function getService(name) {
+        // Service not registered
+        if (typeof services[name] === 'undefined') {
+            web.emitError('Service with the name: ' + name + ' is not registered.');
+
+            return;
+        }
+
+        return services[name];
+    };
+
+    /**
+     * Call a service method by specified parameters
+     * @param {string} name
+     * @param {string} method
+     * @param {string} args
+     * @method callService
+     * @return {Object} service instance
+     */
+    web.callService = function callService(name, method, args) {
+        var serviceMethod = web.getService(name)[method];
+
+        return serviceMethod(args);
+    };
+
+    /**
+     * Call services functions with specified parameters
+     * @param {Array} services
+     * @method callServices
+     * @return {Array} results
+     */
+    web.callServices = function callServices(services) {
+        var results = [];
+
+        // Cycle through registered services and call the battery of methods with args
+        services.forEach(function(service) {
+            results.push(web.callService(service.name, service.func, service.args));
+        });
+
+        return results;
+    };
+
+    // ------- COMPONENT HANDLING -------
+
+    /**
+     * Starts a new component from the component blueprint
+     * @param {String} name
+     * @param {String} id
+     * @param {Object} options
+     * @method startComponent
+     */
+    web.startComponent = function startComponent(name, id, options) {
+        var instance;
+        var Component;
+
+        // Check if component type is available
+        if (typeof components[name] === 'undefined') {
+            web.emitError('Component with the type ' + name + ' is not registered.');
+
+            return;
+        }
+
+        // Instantiate object from base component and init it
+        Component = web.getBaseComponent(name);
+        instance = new Component();
+        instance.initialize(web.getElement(id), options);
+
+        // Add component instance to registry
+        componentInstances[id] = instance;
+    };
+
+    /**
+     * Get the component dom element.
+     * @param {String} id
+     * @return {jQuery|HTMLElement}
+     * @method getElement
+     * @private
+     */
+    web.getElement = function(id) {
+        return $('#' + id)
+    };
+
+    /**
+     * Get the base component by type name
+     * @method getBaseComponent
+     * @param {String} name
+     * @return {Object}
+     */
+    web.getBaseComponent = function getBaseComponent(name) {
+        return components[name];
+    };
+
+    /**
+     * Get a base component from the Component Factory and enrich it
+     * with custom component properties
+     * @param {String} name
+     * @param {Object} component
+     * @method registerComponent
+     */
+    web.registerComponent = function registerComponent(name, component) {
+        if (typeof component === 'object') {
+            // When component is a object create function to allow new on it.
+
+            var instance = function() {};
+
+            $.extend(instance.prototype, component);
+
+            components[name] = instance;
+
+            return;
+        }
+
+        components[name] = component;
+    };
+
+    /**
+     * Get a Component instance by id
+     * @param {String} id component instance identifier defined with the ’startComponent’ method
+     * @method getComponent
+     * @return {Object} component instance
+     */
+    web.getComponent = function getComponent(id) {
+        if (typeof componentInstances[id] === 'undefined') {
+            web.emitError('Component instance with id ' + id + ' not found.');
+
+            return;
+        }
+
+        return componentInstances[id];
+    };
+
+    /**
+     * Facade for destroying a component
+     * @param {Object|String} component Could be an instance or the component id
+     * @method removeComponent
+     * @return {Object}
+     */
+    web.removeComponent = function removeComponent(component) {
+        if (typeof component === 'string') {
+            web.destroyComponent(component);
+
+            return;
+        }
+
+        web.destroyComponent(component.id);
+    };
+
+    /**
+     * Destroys a component and removes its DOM element
+     * @param {String} id
+     * @method destroyComponent
+     * @private
+     */
+    web.destroyComponentInstance = function destroyComponentInstance(id) {
+        if (typeof componentInstances[id] === 'undefined') {
+            web.emitError('Component with id ' + id + ' could not be destroyed, it was not found.');
+
+            return;
+        }
+
+        // Calls pre-destroy function of component
+        if (typeof componentInstances[id].preDestroy === 'function') {
+            componentInstances[id].preDestroy();
+        }
+
+        // Remove DOM element of component instance
+        web.removeElement(id);
+
+        // Delete instance from our registry
+        delete componentInstances[id];
+    };
+
+    /**
+     * Removes its DOM element
+     * @param {String} id
+     * @method removeElement
+     * @private
+     */
+    web.removeElement = function removeElement(id) {
+        web.getElement(id).remove();
+    };
+
+    /**
+     * Starts components instantiation from the registry
+     * @param {Array} components
+     * @method startComponents
+     */
+    web.startComponents = function startComponents(components) {
+        components.forEach(function(component) {
+            try {
+                web.startComponent(component.name, component.id, component.options);
+            } catch (error) {
+                web.emitError('Component start failed for: ' + component.id + ' with ' + error);
+            }
+        });
+    };
+
+    /**
+     * Handle error messages
+     * @method emitError
+     * @param {String} message
+     */
+    web.emitError = function emitError(message) {
+        throw Error(message);
+    };
+
+    return web;
 })();
 
-module.exports = core;
+module.exports = window.web = web;
