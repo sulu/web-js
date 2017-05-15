@@ -82,17 +82,17 @@ var core = core || (function() {
         /**
          * Stats a new component from the component blueprint and returns the reference
          * @param {String} name
-         * @param {String} instanceId
+         * @param {String} id
          * @param {Object} options
          * @return {Object} component instance
          */
-        startComponent: function(name, instanceId, options) {
+        startComponent: function(name, id, options) {
             options = options || {};
             var Component = this.components[name];
             var instance;
             if (!!Component) {
-                instance = new Component(instanceId, options, this);
-                this.componentInstances[instanceId] = instance;
+                instance = new Component(id, options, this);
+                this.componentInstances[id] = instance;
             } else {
                 throw new Error('Component with the type: ' + name + ' is not defined.');
             }
@@ -109,9 +109,9 @@ var core = core || (function() {
 
             $.each(components, function(index, component) {
                 try {
-                    instances[index] = this.startComponent(component.name, component.instanceId, component.options);
+                    instances[index] = this.startComponent(component.name, component.id, component.options);
                 } catch(e) {
-                    console.error('Start of component failed: ' + component.instanceId);
+                    console.error('Start of component failed: ' + component.id);
                     console.error(e);
                 }
             }.bind(this));
@@ -119,12 +119,12 @@ var core = core || (function() {
         },
 
         /**
-         * Get a Component instance by instanceId
-         * @param {String} instanceId - component instance identifier defined with the "startComponent" method
+         * Get a Component instance by id
+         * @param {String} id - component instance identifier defined with the "startComponent" method
          * @return {Object} component instance
          */
-        getComponent: function(instanceId) {
-            return this.componentInstances[instanceId] || null;
+        getComponent: function(id) {
+            return this.componentInstances[id] || null;
         },
 
         /**
@@ -143,14 +143,14 @@ var core = core || (function() {
 
         /**
          * Destroys a component and removes its DOM element
-         * @param {String} instanceId
+         * @param {String} id
          * @private
          */
-        destroyComponent: function(instanceId) {
-            var instance = this.componentInstances[instanceId];
+        destroyComponent: function(id) {
+            var instance = this.componentInstances[id];
             if (!!instance) {
                 instance.destroy.call(instance);
-                delete this.componentInstances[instanceId];
+                delete this.componentInstances[id];
             }
             return this;
         }
