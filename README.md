@@ -118,7 +118,8 @@ web.registerService('logger', require('./services/log.js'));
 
 // components
 web.registerComponent('test', require('./component/test-revealing-pattern.js'));
-web.registerComponent('test', require('./component/test-revealing-pattern.js'));
+web.registerComponent('other', require('./component/test-prototype-pattern.js'));
+web.registerComponent('more', require('./component/test-class'));
 ```
 
 ## Embedding in template
