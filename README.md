@@ -24,7 +24,6 @@ A component can be created using different js patterns:
  - [Revealing pattern](https://addyosmani.com/resources/essentialjsdesignpatterns/book/#revealingmodulepatternjavascript)
  - [Prototype pattern](https://addyosmani.com/resources/essentialjsdesignpatterns/book/#prototypepatternjavascript)
  - [ECMAScript 2015 class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
- - and more which works with multiple instances you simple need to create a initialize method
 
 **Using Revealing pattern**
 
@@ -45,7 +44,7 @@ module.exports = (function() {
 
     return {
         initialize: test.initialize,
-        say: test.say
+        initialize: test.say
     };
 });
 ```
@@ -118,8 +117,7 @@ web.registerService('logger', require('./services/log.js'));
 
 // components
 web.registerComponent('test', require('./component/test-revealing-pattern.js'));
-web.registerComponent('other', require('./component/test-prototype-pattern.js'));
-web.registerComponent('more', require('./component/test-class'));
+web.registerComponent('test', require('./component/test-revealing-pattern.js'));
 ```
 
 ## Embedding in template
