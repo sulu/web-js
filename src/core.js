@@ -39,7 +39,7 @@ var web = (function web() {
      */
     web.getService = function getService(name) {
         // Service not registered
-        if (typeof services[name] === 'undefined') {
+        if (!web.hasService(name)) {
             web.emitError('Service with the name: ' + name + ' is not registered.');
 
             return;
@@ -54,12 +54,27 @@ var web = (function web() {
      * @param {string} method
      * @param {string} args
      * @method callService
-     * @return {Object} service instance
+     * @return {Object} service function return value
      */
     web.callService = function callService(name, method, args) {
-        var serviceMethod = web.getService(name)[method];
+        var service = web.getService(name);
+
+        if (!service) {
+            return;
+        }
+
+        var serviceMethod = service[method];
 
         return serviceMethod(args);
+    };
+
+    /**
+     * Checks if a service with this name exist
+     * @param {String} name
+     * @method hasService
+     */
+    web.hasService = function hasService(name) {
+        return (typeof services[name] !== 'undefined');
     };
 
     /**
@@ -93,7 +108,7 @@ var web = (function web() {
         var Component;
 
         // Check if component type is available
-        if (typeof components[name] === 'undefined') {
+        if (!web.hasComponent(name)) {
             web.emitError('Component with the type ' + name + ' is not registered.');
 
             return;
@@ -106,6 +121,15 @@ var web = (function web() {
 
         // Add component instance to registry
         componentInstances[id] = instance;
+    };
+
+    /**
+     * Checks if a component with this name exist
+     * @param {String} name
+     * @method hasComponent
+     */
+    web.hasComponent = function hasComponent(name) {
+        return (typeof components[name] !== 'undefined');
     };
 
     /**
