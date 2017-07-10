@@ -13,8 +13,8 @@ var web = (function web() {
      * @private
      */
     var web = {};
-    var services = {};
-    var components = {};
+    var serviceRegistry = {};
+    var componentRegistry = {};
     var componentInstances = {};
 
     // ------- SERVICE HANDLING -------
@@ -26,8 +26,8 @@ var web = (function web() {
      * @param {Object} service
      */
     web.registerService = function registerService(name, service) {
-        if (typeof services[name] === 'undefined') {
-            services[name] = service;
+        if (typeof serviceRegistry[name] === 'undefined') {
+            serviceRegistry[name] = service;
         }
     };
 
@@ -45,7 +45,7 @@ var web = (function web() {
             return;
         }
 
-        return services[name];
+        return serviceRegistry[name];
     };
 
     /**
@@ -74,7 +74,7 @@ var web = (function web() {
      * @method hasService
      */
     web.hasService = function hasService(name) {
-        return (typeof services[name] !== 'undefined');
+        return (typeof serviceRegistry[name] !== 'undefined');
     };
 
     /**
@@ -129,7 +129,7 @@ var web = (function web() {
      * @method hasComponent
      */
     web.hasComponent = function hasComponent(name) {
-        return (typeof components[name] !== 'undefined');
+        return (typeof componentRegistry[name] !== 'undefined');
     };
 
     /**
@@ -150,7 +150,7 @@ var web = (function web() {
      * @return {Object}
      */
     web.getBaseComponent = function getBaseComponent(name) {
-        return components[name];
+        return componentRegistry[name];
     };
 
     /**
@@ -168,12 +168,12 @@ var web = (function web() {
 
             $.extend(instance.prototype, component);
 
-            components[name] = instance;
+            componentRegistry[name] = instance;
 
             return;
         }
 
-        components[name] = component;
+        componentRegistry[name] = component;
     };
 
     /**
@@ -264,10 +264,24 @@ var web = (function web() {
      * @param {String} message
      */
     web.emitError = function emitError(message) {
-        throw Error(message);
+        if (console && console.error) {
+            console.error(message);
+        }
     };
 
-    return web;
+    return {
+        registerComponent: web.registerComponent,
+        registerService: web.registerService,
+        startComponents: web.startComponents,
+        callServices: web.callServices,
+        startComponent: web.startComponent,
+        callService: web.callService,
+        getService: web.getService,
+        getComponent: web.getComponent,
+        hasComponent: web.hasComponent,
+        hasService: web.hasService,
+        removeComponent: web.removeComponent
+    };
 })();
 
 module.exports = window.web = web;
