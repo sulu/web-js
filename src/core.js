@@ -49,6 +49,15 @@ var web = (function web() {
     };
 
     /**
+     * Checks if a service with this name exist
+     * @param {String} name
+     * @method hasService
+     */
+    web.hasService = function hasService(name) {
+        return (typeof serviceRegistry[name] !== 'undefined');
+    };
+
+    /**
      * Call a service method by specified parameters
      * @param {string} name
      * @param {string} method
@@ -66,15 +75,6 @@ var web = (function web() {
         var serviceMethod = service[method];
 
         return serviceMethod(args);
-    };
-
-    /**
-     * Checks if a service with this name exist
-     * @param {String} name
-     * @method hasService
-     */
-    web.hasService = function hasService(name) {
-        return (typeof serviceRegistry[name] !== 'undefined');
     };
 
     /**
@@ -124,6 +124,21 @@ var web = (function web() {
     };
 
     /**
+     * Starts components instantiation from the registry
+     * @param {Array} components
+     * @method startComponents
+     */
+    web.startComponents = function startComponents(components) {
+        components.forEach(function(component) {
+            try {
+                web.startComponent(component.name, component.id, component.options);
+            } catch (error) {
+                web.emitError('Component start failed for: ' + component.id + ' with ' + error);
+            }
+        });
+    };
+
+    /**
      * Checks if a component with this name exist
      * @param {String} name
      * @method hasComponent
@@ -140,7 +155,17 @@ var web = (function web() {
      * @private
      */
     web.getElement = function(id) {
-        return $('#' + id)
+        return $('#' + id);
+    };
+
+    /**
+     * Removes its DOM element
+     * @param {String} id
+     * @method removeElement
+     * @private
+     */
+    web.removeElement = function removeElement(id) {
+        web.getElement(id).remove();
     };
 
     /**
@@ -231,31 +256,6 @@ var web = (function web() {
 
         // Delete instance from our registry
         delete componentInstances[id];
-    };
-
-    /**
-     * Removes its DOM element
-     * @param {String} id
-     * @method removeElement
-     * @private
-     */
-    web.removeElement = function removeElement(id) {
-        web.getElement(id).remove();
-    };
-
-    /**
-     * Starts components instantiation from the registry
-     * @param {Array} components
-     * @method startComponents
-     */
-    web.startComponents = function startComponents(components) {
-        components.forEach(function(component) {
-            try {
-                web.startComponent(component.name, component.id, component.options);
-            } catch (error) {
-                web.emitError('Component start failed for: ' + component.id + ' with ' + error);
-            }
-        });
     };
 
     /**
