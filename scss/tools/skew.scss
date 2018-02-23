@@ -1,0 +1,57 @@
+@mixin skew($degree, $background, $z-index: -1) {
+    position: relative;
+    z-index: 1;
+
+    &::before {
+        content: "";
+        background: $background;
+        background-size: cover;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        @content
+    }
+}
+
+@mixin skewX($degree, $background, $topOrBottom, $z-index: -1) {
+    @include skew($degree, $background, $z-index) {
+        transform: skewX($degree);
+        transform-origin: $topOrBottom left;
+        @content
+    }
+}
+
+@mixin skewXTop($degree, $background, $z-index: -1) {
+    @include skewX($degree, $background, top, $z-index) {
+        @content
+    }
+}
+
+@mixin skewXBottom($degree, $background, $z-index: -1) {
+    @include skewX($degree, $background, bottom, $z-index) {
+        @content
+    }
+}
+
+@mixin skewY($degree, $background, $leftOrRight, $z-index: -1) {
+    @include skew($degree, $background, $z-index) {
+        transform: skewY($degree);
+        transform-origin: top $leftOrRight;
+        @content
+    }
+}
+
+@mixin skewYLeft($degree, $background, $z-index: -1) {
+    @include skewY($degree, $background, left, $z-index) {
+        @content
+    }
+}
+
+@mixin skewYRight($degree, $background, $z-index: -1) {
+    @include skewY($degree, $background, right, $z-index) {
+        @content
+    }
+}
