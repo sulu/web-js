@@ -1,4 +1,4 @@
-// Api Service to communication with api
+// Api service to communicate with an API.
 
 'use strict';
 
