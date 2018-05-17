@@ -150,6 +150,6 @@ You can also use without a template engine and by calling the startComponents an
         {name: 'test', id: 'test-2', { text: 'Bye' }}
     ]);
     
-    web.callService([{name: 'logger', func: 'log', args: ['Hello']}])
+    web.callService([{name: 'logger', func: 'log', args: 'Hello'}])
 </script>
 ```

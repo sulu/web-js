@@ -72,9 +72,7 @@ var web = (function web() {
             return;
         }
 
-        var serviceMethod = service[method];
-
-        return serviceMethod(args);
+        return service[method].call(service, args);
     };
 
     /**
