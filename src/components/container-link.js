@@ -4,7 +4,7 @@
 
 module.exports = function ContainerLink() {
     var containerLink = {};
-    
+
     /**
      * @param {jQuery} $el
      */
@@ -17,7 +17,7 @@ module.exports = function ContainerLink() {
 
     containerLink.bindEvents = function() {
         containerLink.$el.click(containerLink.gotoFirstLink);
-        containerLInk.$el.find('a').click(function() {
+        containerLink.$el.find('a').click(function(event) {
             event.stopPropogation();
         });
     };
@@ -28,7 +28,7 @@ module.exports = function ContainerLink() {
     containerLink.gotoFirstLink = function(event) {
         var url = containerLink.$el.find('a').first().attr('href');
 
-        if (e.metaKey || e.ctrlKey) {
+        if (event.metaKey || event.ctrlKey) {
             // Open Link in new tab when meta key or ctrl key is pressed.
             window.open(url);
 

@@ -11,4 +11,7 @@ Thumbs.db
 # PhpStorm-Project
 /.idea/
 
+# NPM
+/node_modules
+
 !**/.gitkeep

@@ -2,6 +2,8 @@
 
 'use strict';
 
+var $ = require('jquery');
+
 module.exports = function Expand() {
     var expand = {};
 

@@ -72,7 +72,7 @@ var web = (function web() {
             return;
         }
 
-        return service[method].call(service, args);
+        return service[method](args);
     };
 
     /**
@@ -184,10 +184,12 @@ var web = (function web() {
      * @method registerComponent
      */
     web.registerComponent = function registerComponent(name, component) {
+        var instance;
+
         if (typeof component === 'object') {
             // When component is a object create function to allow new on it.
 
-            var instance = function() {};
+            instance = function() {};
 
             $.extend(instance.prototype, component);
 
@@ -262,9 +264,11 @@ var web = (function web() {
      * @param {String} message
      */
     web.emitError = function emitError(message) {
+        /* eslint-disable no-console */
         if (console && console.error) {
             console.error(message);
         }
+        /* eslint-enable no-console */
     };
 
     return {

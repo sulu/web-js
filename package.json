@@ -7,6 +7,14 @@
     "type": "git",
     "url": "https://github.com/massiveart/web-js.git"
   },
+  "scripts": {
+    "lint": "npm run lint:js && npm run lint:css",
+    "lint:fix": "npm run lint:js:fix && npm run lint:css:fix",
+    "lint:js": "eslint src",
+    "lint:js:fix": "eslint src --fix",
+    "lint:css": "stylelint src/scss/**/*.scss",
+    "lint:css:fix": "stylelint src/scss/**/*.scss --fix"
+  },
   "keywords": [
     "js",
     "components",
@@ -18,5 +26,11 @@
   },
   "dependencies": {
     "jquery": ">=1.7.2"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-ma": "^1.0.1",
+    "stylelint": "^9.2.1",
+    "stylelint-config-ma": "^1.0.0"
   }
 }
