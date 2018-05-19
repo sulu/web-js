@@ -2,6 +2,7 @@
 
 ## unreleased
 
+ - FEATURE: Add expand js component. #6
  - FEATURE: Add container link js component. #7
 
 ## 1.2.0
