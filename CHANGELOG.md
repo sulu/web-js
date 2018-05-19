@@ -1,5 +1,9 @@
 # Changes
 
+## unreleased
+
+ - FEATURE: Add container link js component. #7
+
 ## 1.2.0
 
  - BUGFIX: Fix context of call services. #9
