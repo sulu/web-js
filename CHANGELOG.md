@@ -2,6 +2,7 @@
 
 ## unreleased
 
+ - FEATURE: Add service to load google map library. #12
  - FEATURE: Add skew scss mixin. #4
  - ENHANCEMENT: Add eslint and stylelint with circle ci. #11
  - FEATURE: Add expand js component. #6

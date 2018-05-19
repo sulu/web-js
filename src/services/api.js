@@ -44,4 +44,3 @@ var Api = (function() {
 })();
 
 module.exports = Api;
-
