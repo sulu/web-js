@@ -2,7 +2,8 @@
 
 ## unreleased
 
- - BUGFIX: Fix expand component when element have multiple classes. #13
+ - FEATURE: Add map math mixin. #14
+ - BUGFIX: Fix expand component when element have multiple classes. #15
  - FEATURE: Add media scss mixin. #13
  - FEATURE: Add service to load google map library. #12
  - FEATURE: Add skew scss mixin. #4
