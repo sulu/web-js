@@ -1,0 +1,111 @@
+// Media mixins
+$media-breakpoints: $breakpoints !default;
+
+// Media min automatically create a "only screen and (min-width: $param)" media query.
+@mixin mediaMin($pixels) {
+    @media only screen and (min-width: $pixels) {
+        @content;
+    }
+}
+
+// Media max automatically create a "only screen and (max-width: $param)" media query.
+@mixin mediaMax($pixels) {
+    @media only screen and (max-width: $pixels) {
+        @content;
+    }
+}
+
+// Media mixin for easier readable media queries.
+//
+// Usage:
+//
+// .example {
+//     @include media('<tablet') {
+//         color: red;
+//     }
+// }
+//
+// Output:
+//
+// @media only screen and (max-width: 767px) {
+//     .example {
+//         color: red;
+//     }
+// }
+@mixin media($condition) {
+    @if str-slice($condition, 1, 1) == '>' {
+        @include mediaMin(map-get($media-breakpoints, str-slice($condition, 2))) {
+            @content;
+        }
+    } @else if str-slice($condition, 1, 1) == '<' {
+        @include mediaMax(map-get($media-breakpoints, str-slice($condition, 2))) {
+            @content;
+        }
+    } @else {
+        @error 'Following condition is not allowed: #{$condition}';
+    }
+}
+
+// Media each max for easy generate attributes foreach media query.
+//
+// Usage:
+//
+// .example {
+//     @include mediaEachMax((
+//         default: 0,
+//         desktop: 62px,
+//         tablet: 64px,
+//         smart: 30px
+//     ), (
+//         margin-left,
+//         margin-right
+//     ));
+// }
+//
+// Output:
+//
+// .example {
+//     margin-left: 0;
+//     margin-right: 0;
+// }
+//
+// @media only screen and (max-width: 1199px) {
+//     .example {
+//         margin-left: 62px;
+//         margin-left: 62px;
+//     }
+// }
+//
+// @media only screen and (max-width: 991px) {
+//     .example {
+//         margin-left: 64px;
+//         margin-left: 64px;
+//     }
+// }
+//
+// @media only screen and (max-width: 767px) {
+//     .example {
+//         margin-left: 30px;
+//         margin-left: 30px;
+//     }
+// }
+@mixin mediaEachMax($matrix, $attributes) {
+    @if map-has-key($matrix, 'default') {
+        @each $attribute in $attributes {
+            #{$attribute}: map-get($matrix, 'default');
+        }
+    }
+
+    @each $breakpoint-name, $breakpoint in $media-breakpoints {
+        @if map-has-key($matrix, $breakpoint-name) {
+            @include media('<' + $breakpoint-name) {
+                @each $attribute in $attributes {
+                    #{$attribute}: map-get($matrix, $breakpoint-name);
+                }
+
+                @content;
+            }
+        }
+    }
+}
+

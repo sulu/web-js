@@ -2,6 +2,7 @@
 
 ## unreleased
 
+ - FEATURE: Add media scss mixin. #13
  - FEATURE: Add service to load google map library. #12
  - FEATURE: Add skew scss mixin. #4
  - ENHANCEMENT: Add eslint and stylelint with circle ci. #11
