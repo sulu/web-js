@@ -2,6 +2,7 @@
 
 ## unreleased
 
+ - ENHANCEMENT: Add eslint and stylelint with circle ci. #11
  - FEATURE: Add expand js component. #6
  - FEATURE: Add container link js component. #7
 

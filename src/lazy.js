@@ -61,7 +61,7 @@ var lazy = (function lazy() {
      * @param {String} componentName
      */
     lazy.loadComponent = function loadComponent(componentName) {
-        lazy.componentRegistry[componentName](function (file) {
+        lazy.componentRegistry[componentName](function(file) {
             web.registerComponent(componentName, file);
             lazy.deferredComponents[componentName].resolve();
         });
@@ -72,7 +72,7 @@ var lazy = (function lazy() {
      *
      * @param {Object} service
      */
-    lazy.startService = function startComponent(service) {
+    lazy.startService = function startService(service) {
         var serviceName = service.name;
         var exist = lazy.deferredComponents[serviceName];
         lazy.deferredComponents[serviceName] = exist ? exist : $.Deferred();
@@ -92,7 +92,7 @@ var lazy = (function lazy() {
      * @param {String} module
      */
     lazy.loadService = function loadService(serviceName) {
-        lazy.serviceRegistry[serviceName](function (file) {
+        lazy.serviceRegistry[serviceName](function(file) {
             web.registerComponent(serviceName, file);
             lazy.deferredServices[serviceName].resolve();
         });
@@ -104,7 +104,9 @@ var lazy = (function lazy() {
      * @param {Array} components
      */
     lazy.startComponents = function startComponents(components) {
-        for (var i = 0; i < components.length; i++) {
+        var i;
+
+        for (i = 0; i < components.length; i++) {
             lazy.startComponent(components[i]);
         }
     };
@@ -114,8 +116,10 @@ var lazy = (function lazy() {
      *
      * @param {Array} services
      */
-    lazy.startServices = function startComponents(services) {
-        for (var i = 0; i < services.length; i++) {
+    lazy.startServices = function startServices(services) {
+        var i;
+
+        for (i = 0; i < services.length; i++) {
             lazy.startService(services[i]);
         }
     };
