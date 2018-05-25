@@ -11,7 +11,7 @@ module.exports = function Expand() {
         // Define necessary component elements, instance $el handed in on initialization
         expand.$el = $el;
         expand.id = $el.attr('id');
-        expand.toggleClass = expand.$el.attr('class') + '--open';
+        expand.toggleClass = expand.$el.attr('class').split(' ')[0] + '--open';
         expand.$container = options.container ? $('#' + options.container) : $('#' + expand.id + '-container');
 
         // Run init functions

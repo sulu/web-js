@@ -2,6 +2,7 @@
 
 ## unreleased
 
+ - BUGFIX: Fix expand component when element have multiple classes. #13
  - FEATURE: Add service to load google map library. #12
  - FEATURE: Add skew scss mixin. #4
  - ENHANCEMENT: Add eslint and stylelint with circle ci. #11
