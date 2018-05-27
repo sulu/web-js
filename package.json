@@ -12,8 +12,8 @@
     "lint:fix": "npm run lint:js:fix && npm run lint:css:fix",
     "lint:js": "eslint src",
     "lint:js:fix": "eslint src --fix",
-    "lint:css": "stylelint src/scss/**/*.scss",
-    "lint:css:fix": "stylelint src/scss/**/*.scss --fix"
+    "lint:css": "stylelint scss/**/*.scss",
+    "lint:css:fix": "stylelint scss/**/*.scss --fix"
   },
   "keywords": [
     "js",
@@ -31,6 +31,6 @@
     "eslint": "^4.19.1",
     "eslint-config-ma": "^1.0.1",
     "stylelint": "^9.2.1",
-    "stylelint-config-ma": "^1.0.0"
+    "stylelint-config-ma": "^1.1.0"
   }
 }

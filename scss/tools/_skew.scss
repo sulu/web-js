@@ -3,7 +3,7 @@
     z-index: 1;
 
     &::before {
-        content: "";
+        content: '';
         background: $background;
         background-size: cover;
         position: absolute;
@@ -12,7 +12,7 @@
         width: 100%;
         height: 100%;
         z-index: -1;
-        @content
+        @content;
     }
 }
 
@@ -20,19 +20,19 @@
     @include skew($degree, $background, $z-index) {
         transform: skewX($degree);
         transform-origin: $topOrBottom left;
-        @content
+        @content;
     }
 }
 
 @mixin skewXTop($degree, $background, $z-index: -1) {
     @include skewX($degree, $background, top, $z-index) {
-        @content
+        @content;
     }
 }
 
 @mixin skewXBottom($degree, $background, $z-index: -1) {
     @include skewX($degree, $background, bottom, $z-index) {
-        @content
+        @content;
     }
 }
 
@@ -40,18 +40,18 @@
     @include skew($degree, $background, $z-index) {
         transform: skewY($degree);
         transform-origin: top $leftOrRight;
-        @content
+        @content;
     }
 }
 
 @mixin skewYLeft($degree, $background, $z-index: -1) {
     @include skewY($degree, $background, left, $z-index) {
-        @content
+        @content;
     }
 }
 
 @mixin skewYRight($degree, $background, $z-index: -1) {
     @include skewY($degree, $background, right, $z-index) {
-        @content
+        @content;
     }
 }
