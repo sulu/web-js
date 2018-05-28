@@ -1,16 +1,23 @@
-// Media mixins
+// Media mixins:
+//
+// $breakpoints: (
+//     laptop: 1199px,     // 992px -> 1199px
+//     tablet: 991px,      // 768px ->  991px
+//     smart: 767px,       // 578px ->  767px
+//     mobile: 577px,      //   0px ->  577px
+// );
 $media-breakpoints: $breakpoints !default;
 
-// Media min automatically create a "only screen and (min-width: $param)" media query.
-@mixin mediaMin($pixels) {
-    @media only screen and (min-width: $pixels) {
+// Media min automatically create a "only screen and (min-width: $value)" media query.
+@mixin mediaMin($value) {
+    @media only screen and (min-width: $value) {
         @content;
     }
 }
 
-// Media max automatically create a "only screen and (max-width: $param)" media query.
-@mixin mediaMax($pixels) {
-    @media only screen and (max-width: $pixels) {
+// Media max automatically create a "only screen and (max-width: $value)" media query.
+@mixin mediaMax($value) {
+    @media only screen and (max-width: $value) {
         @content;
     }
 }
@@ -33,12 +40,27 @@ $media-breakpoints: $breakpoints !default;
 //     }
 // }
 @mixin media($condition) {
-    @if str-slice($condition, 1, 1) == '>' {
-        @include mediaMin(map-get($media-breakpoints, str-slice($condition, 2))) {
+    $function: str-slice($condition, 1, 1);
+    $currentBreakpoint: str-slice($condition, 2);
+
+    @if $function == '>' {
+        @include mediaMin(map-get($media-breakpoints, $currentBreakpoint) + 1px) {
             @content;
         }
-    } @else if str-slice($condition, 1, 1) == '<' {
-        @include mediaMax(map-get($media-breakpoints, str-slice($condition, 2))) {
+    } @else if $function == '<' {
+        $indexCondition: 1;
+
+        @if $currentBreakpoint != 'default' {
+            $indexCondition: index(map-keys($media-breakpoints), $currentBreakpoint) + 1;
+        }
+
+        @if $indexCondition > length($media-breakpoints) or $indexCondition < 1 {
+            @error 'Following condition is not allowed: #{$condition}';
+        }
+
+        $value: nth(nth($media-breakpoints, $indexCondition), 2);
+
+        @include mediaMax($value) {
             @content;
         }
     } @else {
@@ -52,8 +74,8 @@ $media-breakpoints: $breakpoints !default;
 //
 // .example {
 //     @include mediaEachMax((
-//         default: 0,
-//         desktop: 62px,
+//         default: auto,
+//         laptop: 62px,
 //         tablet: 64px,
 //         smart: 30px
 //     ), (
@@ -65,8 +87,8 @@ $media-breakpoints: $breakpoints !default;
 // Output:
 //
 // .example {
-//     margin-left: 0;
-//     margin-right: 0;
+//     margin-left: auto;
+//     margin-right: auto;
 // }
 //
 // @media only screen and (max-width: 1199px) {
@@ -98,14 +120,12 @@ $media-breakpoints: $breakpoints !default;
 
     @each $breakpoint-name, $breakpoint in $media-breakpoints {
         @if map-has-key($matrix, $breakpoint-name) {
-            @include media('<' + $breakpoint-name) {
+            @include mediaMax($breakpoint) {
                 @each $attribute in $attributes {
                     #{$attribute}: map-get($matrix, $breakpoint-name);
                 }
-
                 @content;
             }
         }
     }
 }
-
