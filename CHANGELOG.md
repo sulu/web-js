@@ -2,6 +2,7 @@
 
 ## unreleased
 
+ - BUGFIX: Fix media mixin to use the correct pixels and allow multiple lists. #16
  - FEATURE: Add map math mixin. #14
  - BUGFIX: Fix expand component when element have multiple classes. #15
  - FEATURE: Add media scss mixin. #13
