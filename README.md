@@ -17,7 +17,9 @@ yarn add massive-web
 npm install massive-web
 ```
 
-## Create your first component
+## Usage
+
+### Create your first component
 
 A component can be created using different js patterns:
 
@@ -92,7 +94,7 @@ class Test {
 module.exports Test;
 ```
 
-## Create your first service
+### Create your first service
 
 Sometimes you want just run js code which is not binded to a dom element for this services where created.
 Typically usages are running tracking code functions.
@@ -107,7 +109,7 @@ module.exports = {
 };
 ```
 
-## Initialize web.js and registering your components and services
+### Initialize web.js and registering your components and services
 
 ```js
 // src/main.js
@@ -122,15 +124,15 @@ web.registerComponent('other', require('./component/test-prototype-pattern.js'))
 web.registerComponent('more', require('./component/test-class'));
 ```
 
-## Embedding in template
+### Embedding in template
 
 For efficient handling its recommended to use it with a template engine like twig.
 
-### Twig
+#### Twig
 
 For twig embedding see the [web component twig extension](https://github.com/massiveart/web-twig).
 
-### HTML
+#### HTML
 
 You can also use without a template engine and by calling the startComponents and callServices.
 
@@ -152,4 +154,35 @@ You can also use without a template engine and by calling the startComponents an
     
     web.callService([{name: 'logger', func: 'log', args: 'Hello'}])
 </script>
+```
+
+## Version Update & Publish to NPM (docs for maintainers)
+
+### 1. Create release on github
+
+Update package.json version on master branch:
+
+```bash
+git checkout master
+git pull origin master
+npm version [ major | minor | patch ] --no-git-tag-version
+git add .
+git commit -m "Release <version>"
+git push origin master
+```
+
+Generate changelog:
+
+```bash
+github_changelog_generator --future-release <version>
+```
+
+Copy the text of the last release into and get new release.
+
+### 2. Publish release
+
+```
+git fetch --tags
+git checkout <version>
+npm publish
 ```
