@@ -1,0 +1,95 @@
+// Map math mixins:
+
+// Map math will multiply the given list by the given multiplier.
+//
+// Usage:
+//
+// mapMath((
+//     laptop: 100px,
+//     mobile: 50px
+// ), 1.2);
+//
+// Output:
+//
+// (
+//     laptop: 120px,
+//     mobile: 60px
+// )
+@function mapMath($map, $param, $calculationType: '*') {
+    $newMap: ();
+
+    @each $key, $value in $map {
+        @if $calculationType == '*' {
+            $value: $value * $param;
+        } @elseif $calculationType == '/' {
+            $value: $value / $param;
+        } @elseif $calculationType == '+' {
+            $value: $value + $param;
+        } @elseif $calculationType == '-' {
+            $value: $value - $param;
+        } @else {
+            @error 'Following calculation type is not supported: #{$calculationType}';
+        }
+
+        $newMap: map-merge($newMap, ($key: $value));
+    }
+
+    @return $newMap;
+}
+
+// Map math half will divide the given values by 2.
+//
+// Usage:
+//
+// mapMathHalf((
+//     laptop: 100px,
+//     mobile: 50px
+// ));
+//
+// Output:
+//
+// (
+//     laptop: 50px,
+//     mobile: 20px
+// )
+@function mapMathHalf($map) {
+    @return mapMath($map, 0.5);
+}
+
+// Map math negative will invert the given values.
+//
+// Usage:
+//
+// mapMathNegative((
+//     laptop: 100px,
+//     mobile: 50px
+// ));
+//
+// Output:
+//
+// (
+//     laptop: -100px,
+//     mobile: -50px
+// )
+@function mapMathNegative($map) {
+    @return mapMath($map, -1);
+}
+
+// Map math negative will invert the given values and divide by 2.
+//
+// Usage:
+//
+// mapMathNegative(
+//     laptop: 100px,
+//     mobile: 50px
+// );
+//
+// Output:
+//
+// (
+//     laptop: -50px,
+//     mobile: -25px
+// )
+@function mapMathHalfNegative($map) {
+    @return mapMath($map, -0.5);
+}
