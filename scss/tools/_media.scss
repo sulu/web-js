@@ -118,10 +118,12 @@ $media-breakpoints: $breakpoints !default;
         @if map-has-key($matrix, 'default') {
             #{$attribute-name}: map-get($matrix, 'default');
         }
+    }
 
-        @each $breakpoint-name, $breakpoint in $media-breakpoints {
-            @if map-has-key($matrix, $breakpoint-name) {
-                @include mediaMax($breakpoint) {
+    @each $breakpoint-name, $breakpoint in $media-breakpoints {
+        @include mediaMax($breakpoint) {
+            @each $attribute-name, $matrix in $attributes {
+                @if map-has-key($matrix, $breakpoint-name) {
                     #{$attribute-name}: map-get($matrix, $breakpoint-name);
                     @content;
                 }
@@ -129,3 +131,4 @@ $media-breakpoints: $breakpoints !default;
         }
     }
 }
+
