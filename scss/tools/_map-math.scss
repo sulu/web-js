@@ -15,11 +15,23 @@
 //     laptop: 120px,
 //     mobile: 60px
 // )
-@function mapMath($map, $multiplier) {
+@function mapMath($map, $param, $calculationType: '*') {
     $newMap: ();
 
     @each $key, $value in $map {
-        $newMap: map-merge($newMap, ($key: ($value * $multiplier)));
+        @if $calculationType == '*' {
+            $value: $value * $param;
+        } @elseif $calculationType == '/' {
+            $value: $value / $param;
+        } @elseif $calculationType == '+' {
+            $value: $value + $param;
+        } @elseif $calculationType == '-' {
+            $value: $value - $param;
+        } @else {
+            @error 'Following calculation type is not supported: #{$calculationType}';
+        }
+
+        $newMap: map-merge($newMap, ($key: $value));
     }
 
     @return $newMap;
