@@ -76,7 +76,7 @@ module.exports = test;
 ```js
 // src/components/test-class.js
 
-class Test {
+export default class Test {
     constructor() {
         this.text = '';
     }
@@ -90,8 +90,6 @@ class Test {
         alert(this.text);
     }
 }
-
-module.exports Test;
 ```
 
 ### Create your first service
