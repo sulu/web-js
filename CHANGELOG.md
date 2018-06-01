@@ -2,6 +2,10 @@
 
 ## unreleased
 
+ - FEATURE: Add unicode function for rendering content variables. #20
+
+## 1.3.0
+
  - BUGFIX: Fix media mixin to use the correct pixels and allow multiple lists. #16
  - FEATURE: Add map math mixin. #14
  - BUGFIX: Fix expand component when element have multiple classes. #15

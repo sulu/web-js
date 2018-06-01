@@ -1,0 +1,8 @@
+// Unicode:
+//
+// .test::before {
+//     content: unicode($icon-close);
+// }
+@function unicode($string) {
+    @return unquote('\"') + $string + unquote('\"');
+}
