@@ -24,7 +24,7 @@
   "bugs": {
     "url": "https://github.com/massiveart/web-js/issues"
   },
-  "dependencies": {
+  "peerDependencies": {
     "jquery": ">=1.7.2"
   },
   "devDependencies": {
