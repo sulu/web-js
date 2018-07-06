@@ -131,7 +131,7 @@ var web = (function web() {
             try {
                 web.startComponent(component.name, component.id, component.options);
             } catch (error) {
-                web.emitError('Component start failed for: ' + component.id + ' with ' + error);
+                web.emitError('Component "' + component.name + '" start failed for "' + component.id + '":', error);
             }
         });
     };
@@ -261,12 +261,11 @@ var web = (function web() {
     /**
      * Handle error messages
      * @method emitError
-     * @param {String} message
      */
-    web.emitError = function emitError(message) {
+    web.emitError = function emitError() {
         /* eslint-disable no-console */
         if (console && console.error) {
-            console.error(message);
+            console.error.apply(null, arguments);
         }
         /* eslint-enable no-console */
     };
@@ -287,4 +286,3 @@ var web = (function web() {
 })();
 
 module.exports = window.web = web;
-
