@@ -1,8 +1,10 @@
 # Changes
 
-## unreleased
+## 1.3.1
 
  - BUGFIX: Define jquery as peer dependency. #23
+ - BUGFIX: Show correct stack trace for failed component start. #24
+ - ENHANCEMENT: Add closeOnEsc to expand and toggle class instead of display. #19
 
 ## 1.3.0
 
