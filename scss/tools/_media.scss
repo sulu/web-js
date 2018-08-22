@@ -88,7 +88,7 @@ $media-breakpoints: $breakpoints !default;
             @error 'Following condition is not allowed: #{$condition}';
         }
 
-        @each $name, $breakpoint in $breakpoints {
+        @each $name, $breakpoint in $media-breakpoints {
             @if $breakpoint > $minvalue and $breakpoint < $maxvalue {
                 $minvalue: $breakpoint + 1;
             }
