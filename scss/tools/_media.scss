@@ -22,6 +22,13 @@ $media-breakpoints: $breakpoints !default;
     }
 }
 
+// Media only automatically create a "only screen and(min-width: $minvalue) and (max-width: $maxvalue)" media query.
+@mixin mediaOnly($minvalue, $maxvalue) {
+    @media only screen and (min-width: $minvalue) and (max-width: $maxvalue) {
+        @content;
+    }
+}
+
 // Media mixin for easier readable media queries.
 //
 // Usage:
@@ -30,6 +37,10 @@ $media-breakpoints: $breakpoints !default;
 //     @include media('<tablet') {
 //         color: red;
 //     }
+//
+//     @include media('laptop') {
+//         color: blue;
+//     }
 // }
 //
 // Output:
@@ -37,6 +48,12 @@ $media-breakpoints: $breakpoints !default;
 // @media only screen and (max-width: 767px) {
 //     .example {
 //         color: red;
+//     }
+// }
+//
+// @media only screen and (min-width: 992px) and (max-width: 1199px) {
+//     .example {
+//         color: blue;
 //     }
 // }
 @mixin media($condition) {
@@ -64,7 +81,21 @@ $media-breakpoints: $breakpoints !default;
             @content;
         }
     } @else {
-        @error 'Following condition is not allowed: #{$condition}';
+        $maxvalue: map-get($media-breakpoints, $condition);
+        $minvalue: 0;
+        @if not $maxvalue {
+          @error 'Following condition is not allowed: #{$condition}';
+        }
+    
+        @each $name, $breakpoint in $breakpoints {
+            @if $breakpoint > $minvalue and $breakpoint < $maxvalue {
+                $minvalue: $breakpoint + 1;
+            }
+        }
+        
+        @include mediaOnly($minvalue, $maxvalue) {
+            @content;
+        }
     }
 }
 
