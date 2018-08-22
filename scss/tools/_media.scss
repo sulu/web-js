@@ -81,21 +81,39 @@ $media-breakpoints: $breakpoints !default;
             @content;
         }
     } @else {
-        $maxvalue: map-get($media-breakpoints, $condition);
-        $minvalue: 0;
+        @if $condition == 'default' {
+            $maxBreakpoint: 0;
 
-        @if not $maxvalue {
-            @error 'Following condition is not allowed: #{$condition}';
-        }
-
-        @each $name, $breakpoint in $media-breakpoints {
-            @if $breakpoint > $minvalue and $breakpoint < $maxvalue {
-                $minvalue: $breakpoint + 1;
+            @each $name, $breakpoint in $media-breakpoints {
+                @if $breakpoint > $maxBreakpoint {
+                    $maxBreakpoint: $breakpoint;
+                }
             }
-        }
 
-        @include mediaOnly($minvalue, $maxvalue) {
-            @content;
+            @if $maxBreakpoint > 0 {
+                $maxBreakpoint: $maxBreakpoint + 1px;
+            }
+
+            @include mediaMin($maxBreakpoint) {
+                @content;
+            }
+        } @else {
+            $maxvalue: map-get($media-breakpoints, $condition);
+            $minvalue: 0;
+
+            @if not $maxvalue {
+                @error 'Following condition is not allowed: #{$condition}';
+            }
+
+            @each $name, $breakpoint in $media-breakpoints {
+                @if $breakpoint > $minvalue and $breakpoint < $maxvalue {
+                    $minvalue: $breakpoint + 1;
+                }
+            }
+
+            @include mediaOnly($minvalue, $maxvalue) {
+                @content;
+            }
         }
     }
 }
