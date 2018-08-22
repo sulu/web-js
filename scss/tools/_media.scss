@@ -61,7 +61,13 @@ $media-breakpoints: $breakpoints !default;
     $currentBreakpoint: str-slice($condition, 2);
 
     @if $function == '>' {
-        @include mediaMin(map-get($media-breakpoints, $currentBreakpoint) + 1px) {
+        $value: map-get($media-breakpoints, $currentBreakpoint);
+
+        @if not $value {
+            @error 'Following condition is not allowed: #{$condition}';
+        }
+
+        @include mediaMin($value + 1px) {
             @content;
         }
     } @else if $function == '<' {
