@@ -83,16 +83,17 @@ $media-breakpoints: $breakpoints !default;
     } @else {
         $maxvalue: map-get($media-breakpoints, $condition);
         $minvalue: 0;
+        
         @if not $maxvalue {
-          @error 'Following condition is not allowed: #{$condition}';
+            @error 'Following condition is not allowed: #{$condition}';
         }
-    
+
         @each $name, $breakpoint in $breakpoints {
             @if $breakpoint > $minvalue and $breakpoint < $maxvalue {
                 $minvalue: $breakpoint + 1;
             }
         }
-        
+
         @include mediaOnly($minvalue, $maxvalue) {
             @content;
         }
