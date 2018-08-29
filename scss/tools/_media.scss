@@ -67,7 +67,7 @@ $media-breakpoints: $breakpoints !default;
             @error 'Following condition is not allowed: #{$condition}';
         }
 
-        @include mediaMin($value + 1px) {
+        @include mediaMin($value + 1) {
             @content;
         }
     } @else if $function == '<' {
@@ -97,7 +97,7 @@ $media-breakpoints: $breakpoints !default;
             }
 
             @if $maxBreakpoint > 0 {
-                $maxBreakpoint: $maxBreakpoint + 1px;
+                $maxBreakpoint: $maxBreakpoint + 1;
             }
 
             @include mediaMin($maxBreakpoint) {
