@@ -1,5 +1,10 @@
 # Changes
 
+## 1.4.0
+
+ - FEATURE: Added mediaOnly mixin. #28
+ - FEATURE: Added contaiiner link scss mixin. #26
+
 ## 1.3.1
 
  - BUGFIX: Define jquery as peer dependency. #23
