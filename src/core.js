@@ -119,6 +119,8 @@ var web = (function web() {
 
         // Add component instance to registry
         componentInstances[id] = instance;
+        
+        return instance;
     };
 
     /**
