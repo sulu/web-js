@@ -100,6 +100,7 @@ var web = (function web() {
      * @param {String} id
      * @param {Object} options
      * @method startComponent
+     * @return {Object} instance
      */
     web.startComponent = function startComponent(name, id, options) {
         var instance;
@@ -119,6 +120,8 @@ var web = (function web() {
 
         // Add component instance to registry
         componentInstances[id] = instance;
+
+        return instance;
     };
 
     /**
