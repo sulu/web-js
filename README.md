@@ -1,3 +1,8 @@
+[![CircleCi](https://circleci.com/gh/massiveart/web-js.png?style=shield)](https://circleci.com/gh/massiveart/web-js)
+[![npm](https://img.shields.io/npm/v/massive-web.svg)](https://www.npmjs.com/package/massive-web)
+[![Size](https://img.shields.io/github/size/massiveart/web-js/src/core.js.svg)](https://github.com/massiveart/web-js/blob/master/src/core.js)
+[![Install Size](https://packagephobia.now.sh/badge?p=massive-web)](https://packagephobia.now.sh/result?p=massive-web)
+
 # Web JS
 
 The web-js in connection with [web component twig extension](https://github.com/massiveart/web-twig)
