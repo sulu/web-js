@@ -1,6 +1,6 @@
 {
   "name": "massive-web",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Manage your js components",
   "main": "src/core.js",
   "repository": {

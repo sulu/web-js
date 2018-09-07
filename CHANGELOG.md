@@ -1,5 +1,9 @@
 # Changes
 
+## 1.4.1
+
+ - FEATURE: Added return of instance in startComponent. #30
+
 ## 1.4.0
 
  - FEATURE: Added mediaOnly mixin. #28
