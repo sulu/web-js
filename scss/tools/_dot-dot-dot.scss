@@ -1,0 +1,5 @@
+@mixin dotDotDot() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

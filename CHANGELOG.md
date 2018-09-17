@@ -3,6 +3,7 @@
 ## unreleased
 
  - FEATURE: Added truncate component. #32
+ - FEATURE: Added dot dot dot scss mixin. #31
 
 ## 1.4.1
 
