@@ -5,6 +5,9 @@
 var $ = require('jquery');
 
 // Extracted from UnderscoreJS
+/**
+ * @ignore
+ */
 function debounce(func, wait, immediate) {
     var timeout;
     return function() {
@@ -53,12 +56,12 @@ module.exports = function Truncate() {
     };
 
     truncate.calculateText = function calculateText() {
+        var height;
+
         truncate.$inner.text(truncate.text);
-        var height = truncate.$el.height();
-        console.log("Max Height", height);
+        height = truncate.$el.height();
 
         while (truncate.$inner.outerHeight() > height) {
-            console.log("Computed Height", truncate.$inner.outerHeight());
             truncate.$inner.text(function (index, text) {
                 return text.replace(truncate.regex, truncate.separator);
             });
