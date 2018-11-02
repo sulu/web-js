@@ -10,14 +10,23 @@ var $ = require('jquery');
  */
 function debounce(func, wait, immediate) {
     var timeout;
+    
     return function() {
-        var context = this, args = arguments;
+        var context = this;
+        var args = arguments;
+        
         clearTimeout(timeout);
         timeout = setTimeout(function() {
             timeout = null;
-            if (!immediate) func.apply(context, args);
+            
+            if (!immediate) {
+                func.apply(context, args);
+            }
         }, wait);
-        if (immediate && !timeout) func.apply(context, args);
+        
+        if (immediate && !timeout) {
+            func.apply(context, args);
+        }
     };
 }
 
@@ -62,7 +71,7 @@ module.exports = function Truncate() {
         height = truncate.$el.height();
 
         while (truncate.$inner.outerHeight() > height) {
-            truncate.$inner.text(function (index, text) {
+            truncate.$inner.text(function(index, text) {
                 return text.replace(truncate.regex, truncate.separator);
             });
         }
