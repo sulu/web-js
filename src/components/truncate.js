@@ -73,7 +73,7 @@ module.exports = function Truncate() {
         while (truncate.$inner.outerHeight() > height) {
             truncate.$inner.text(function(index, text) {
                 if (text === truncate.separator) {
-                  return '';
+                    return '';
                 }
 
                 return text.replace(truncate.regex, truncate.separator);
