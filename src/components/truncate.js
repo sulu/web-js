@@ -61,7 +61,7 @@ module.exports = function Truncate() {
 
     truncate.calculateRegex = function calculateRegex() {
         var separatorRegex = truncate.separator.split('').map(c => '\\' + c).join('');
-        truncate.regex = new RegExp('\\W*\\s(?:\\S*|\\S*' + separatorRegex + ')$');
+        truncate.regex = new RegExp('\\W*\\s?(?:\\S*|\\S*' + separatorRegex + ')$');
     };
 
     truncate.calculateText = function calculateText() {
@@ -72,6 +72,10 @@ module.exports = function Truncate() {
 
         while (truncate.$inner.outerHeight() > height) {
             truncate.$inner.text(function(index, text) {
+                if (text === truncate.separator) {
+                  return '';
+                }
+
                 return text.replace(truncate.regex, truncate.separator);
             });
         }
