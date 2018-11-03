@@ -1,5 +1,9 @@
 # Changes
 
+## unreleased
+
+ - FEATURE: Added truncate component. #32
+
 ## 1.4.1
 
  - FEATURE: Added return of instance in startComponent. #30
