@@ -33,22 +33,12 @@ function debounce(func, wait, immediate) {
 module.exports = function Truncate() {
     var truncate = {};
 
-    truncate.separator = ' ...';
-    truncate.debounceDelay = 250;
-
     truncate.initialize = function initialize($el, options) {
         truncate.$el = $el;
 
-        if (options) {
-            if (options.separator) {
-                truncate.separator = options.separator;
-            }
-
-            if (options.debounceDelay) {
-                truncate.debounceDelay = options.debounceDelay;
-            }
-        }
-
+        truncate.separator = options.separator || ' ...';
+        truncate.debounceDelay = options.debounceDelay || 250;
+        
         truncate.text = truncate.$el.text().trim();
         truncate.$inner = $('<span></span>').text(truncate.text).css('display', 'block');
         truncate.$el.html(truncate.$inner).css('display', 'block');
