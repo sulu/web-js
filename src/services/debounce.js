@@ -27,4 +27,4 @@ module.exports = function debounce(func, wait, immediate) {
             func.apply(context, args);
         }
     };
-}
+};
