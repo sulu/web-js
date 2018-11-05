@@ -8,9 +8,22 @@ var debounce = require('../services/debounce');
 module.exports = function Truncate() {
     var truncate = {};
 
+    /**
+     * @example
+     * <div id="truncate" style="overflow: hidden; line-height: 20px; max-height: 60px;">
+     *    Lorem ipsum ...
+     * </div>
+     *
+     * import truncate from 'massive-web/src/truncate';
+     * truncate.initialize($('#truncate'), {});
+     *
+     * @param {jQuery} $el
+     * @param {object} options
+     */
     truncate.initialize = function initialize($el, options) {
         truncate.$el = $el;
 
+        // Set default options if no custom options are defined
         truncate.separator = options.separator || ' ...';
         truncate.debounceDelay = options.debounceDelay || 250;
 
@@ -24,11 +37,17 @@ module.exports = function Truncate() {
         $(window).on('resize', debounce(truncate.calculateText, truncate.debounceDelay));
     };
 
+    /**
+     * Calculate regex based on the separator.
+     */
     truncate.calculateRegex = function calculateRegex() {
         var separatorRegex = truncate.separator.split('').map(c => '\\' + c).join('');
         truncate.regex = new RegExp('\\W*\\s?(?:\\S*|\\S*' + separatorRegex + ')$');
     };
 
+    /**
+     * Calculate output text based on the element's height.
+     */
     truncate.calculateText = function calculateText() {
         var height;
 
