@@ -14,7 +14,7 @@ module.exports = function Truncate() {
      *    Lorem ipsum ...
      * </div>
      *
-     * import truncate from 'massive-web/src/truncate';
+     * import truncate from 'massive-web/src/components/truncate';
      * truncate.initialize($('#truncate'), {});
      *
      * @param {jQuery} $el
