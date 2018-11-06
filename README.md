@@ -169,6 +169,7 @@ Update package.json version on master branch:
 git checkout master
 git pull origin master
 npm version [ major | minor | patch ] --no-git-tag-version
+# update version in changelog
 git add .
 git commit -m "Release <version>"
 git push origin master

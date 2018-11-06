@@ -1,6 +1,6 @@
 # Changes
 
-## unreleased
+## 1.5.0
 
  - FEATURE: Added truncate component. #32
  - FEATURE: Added dot dot dot scss mixin. #31
@@ -45,4 +45,3 @@
 ## 1.0.0
 
  - FEATURE Initial component and service logic.
-
