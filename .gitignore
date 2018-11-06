@@ -14,5 +14,6 @@ Thumbs.db
 # NPM
 /node_modules
 yarn-error.log
+yarn.lock
 
 !**/.gitkeep
