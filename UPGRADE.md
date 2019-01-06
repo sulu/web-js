@@ -1,5 +1,40 @@
 # 2.0.0
 
+## jQuery removed from web component
+
+Web component initialize method will not longer get a jQuery Element
+instead it will get a basic javascript HTMLElement. This allows
+to use web-js without jQuery and detect which components really need
+jQuery as there dependency.
+
+**Before**
+
+```js
+initialize($el) {
+
+}
+
+// or
+
+initialize($el, options) {
+
+}
+```
+
+**After**
+
+```js
+initialize(el) {
+    var $el = el;
+}
+
+// or
+
+initialize($el, options) {
+    var $el = el;
+}
+```
+
 ## Api service dataType changed
 
 The api service will now use json dataType instead of html.

@@ -1,5 +1,4 @@
 // Expand trigger component module
-
 'use strict';
 
 var $ = require('jquery');
@@ -7,10 +6,14 @@ var $ = require('jquery');
 module.exports = function Expand() {
     var expand = {};
 
-    expand.initialize = function initialize($el, options) {
+    /**
+     * @param {HTMLELement} el
+     * @param {object} options
+     */
+    expand.initialize = function initialize(el, options) {
         // Define necessary component elements, instance $el handed in on initialization
-        expand.$el = $el;
-        expand.id = $el.attr('id');
+        expand.$el = $(el);
+        expand.id = expand.$el.attr('id');
         expand.closeOnEsc = options.closeOnEsc ? options.closeOnEsc : false;
         expand.$container = options.container ? $('#' + options.container) : $('#' + expand.id + '-container');
         expand.modifier = options.modifier ? options.modifier : '--open';
@@ -21,6 +24,9 @@ module.exports = function Expand() {
         expand.bindEvents();
     };
 
+    /**
+     * @param {jQuery} $element
+     */
     expand.getFirstClass = function getFirstClass($element) {
         return $element.attr('class').split(' ')[0];
     };

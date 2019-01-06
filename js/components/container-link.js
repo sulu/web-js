@@ -1,15 +1,16 @@
 // Container link component.
-
 'use strict';
+
+var $ = require('jquery');
 
 module.exports = function ContainerLink() {
     var containerLink = {};
 
     /**
-     * @param {jQuery} $el
+     * @param {HTMLELement} el
      */
-    containerLink.initialize = function initialize($el) {
-        containerLink.$el = $el;
+    containerLink.initialize = function initialize(el) {
+        containerLink.$el = $(el);
 
         // Run init functions.
         containerLink.bindEvents();

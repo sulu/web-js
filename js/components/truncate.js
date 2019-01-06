@@ -17,11 +17,11 @@ module.exports = function Truncate() {
      * import truncate from 'massive-web/src/components/truncate';
      * truncate.initialize($('#truncate'), {});
      *
-     * @param {jQuery} $el
+     * @param {HTMLElement} el
      * @param {object} options
      */
-    truncate.initialize = function initialize($el, options) {
-        truncate.$el = $el;
+    truncate.initialize = function initialize(el, options) {
+        truncate.$el = $(el);
 
         // Set default options if no custom options are defined
         truncate.separator = options.separator || ' ...';
