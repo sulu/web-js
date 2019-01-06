@@ -1,5 +1,9 @@
 # Changes
 
+## 2.0.0
+
+ - ENHANCEMENT: Rename src folder to js. #35
+
 ## 1.5.0
 
  - FEATURE: Added truncate component. #32

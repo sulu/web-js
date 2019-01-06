@@ -1,6 +1,6 @@
 [![CircleCi](https://circleci.com/gh/massiveart/web-js.png?style=shield)](https://circleci.com/gh/massiveart/web-js)
 [![npm](https://img.shields.io/npm/v/massive-web.svg)](https://www.npmjs.com/package/massive-web)
-[![Size](https://img.shields.io/github/size/massiveart/web-js/src/core.js.svg)](https://github.com/massiveart/web-js/blob/master/src/core.js)
+[![Size](https://img.shields.io/github/size/massiveart/web-js/js/core.js.svg)](https://github.com/massiveart/web-js/blob/master/js/core.js)
 [![Install Size](https://packagephobia.now.sh/badge?p=massive-web)](https://packagephobia.now.sh/result?p=massive-web)
 
 # Web JS
@@ -36,7 +36,7 @@ A component can be created using different js patterns:
 **Using Revealing pattern**
 
 ```js
-// src/components/test-revealing-pattern.js
+// js/components/test-revealing-pattern.js
 
 module.exports = (function() {
     var test = {};
@@ -60,7 +60,7 @@ module.exports = (function() {
 **Using Prototype pattern**
 
 ```js
-// src/components/test-prototype-pattern.js
+// js/components/test-prototype-pattern.js
 
 var test = function() {};
 
@@ -79,7 +79,7 @@ module.exports = test;
 **Using ECMAScript 2015 class**
 
 ```js
-// src/components/test-class.js
+// js/components/test-class.js
 
 export default class Test {
     constructor() {
@@ -103,7 +103,7 @@ Sometimes you want just run js code which is not binded to a dom element for thi
 Typically usages are running tracking code functions.
 
 ```js
-// src/services/log.js
+// js/services/log.js
 
 module.exports = {
    log: function(text) {
@@ -115,7 +115,7 @@ module.exports = {
 ### Initialize web.js and registering your components and services
 
 ```js
-// src/main.js
+// js/main.js
 var web = window.web = require('massive.web');
 
 // services
@@ -148,7 +148,7 @@ You can also use without a template engine and by calling the startComponents an
     Say Bye
 </button>
 
-<script src="src/main.js"></script>
+<script src="js/main.js"></script>
 <script>
     web.startComponents([
         {name: 'test', id: 'test-1', { text: 'Hello' }}, 
