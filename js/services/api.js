@@ -17,6 +17,7 @@ var Api = (function() {
      */
     var ajax = function(method, uri, data) {
         return $.ajax({
+            dataType: 'json',
             url: uri,
             method: method,
             data: data
