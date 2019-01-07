@@ -1,5 +1,10 @@
 # 2.0.0
 
+## Api service dataType changed
+
+The api service will now use json dataType instead of html.
+So if HTML should be returned, you should use `$.ajax` instead.
+
 ## Multiple call service arguments
 
 Its now possible to provide multiple arguments to a service call for this 
