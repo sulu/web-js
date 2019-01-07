@@ -2,6 +2,7 @@
 
 ## 2.0.0
 
+ - FEATURE: Add support for multiple arguments in service call. #36
  - ENHANCEMENT: Rename src folder to js. #35
 
 ## 1.5.0

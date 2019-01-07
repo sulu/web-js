@@ -72,7 +72,7 @@ var web = (function web() {
             return;
         }
 
-        return service[method](args);
+        return service[method].apply(service, args);
     };
 
     /**
