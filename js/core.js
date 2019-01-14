@@ -1,8 +1,6 @@
-// Application Sandbox
+// Web component and service registry
 
 'use strict';
-
-var $ = require('jquery');
 
 /**
  * Web container for all components and services.
@@ -151,12 +149,12 @@ var web = (function web() {
     /**
      * Get the component dom element.
      * @param {String} id
-     * @return {jQuery|HTMLElement}
+     * @return {HTMLElement}
      * @method getElement
      * @private
      */
     web.getElement = function(id) {
-        return $('#' + id);
+        return document.getElementById(id);
     };
 
     /**
@@ -194,7 +192,7 @@ var web = (function web() {
 
             instance = function() {};
 
-            $.extend(instance.prototype, component);
+            Object.assign(instance.prototype, component);
 
             componentRegistry[name] = instance;
 

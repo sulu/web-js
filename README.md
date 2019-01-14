@@ -37,13 +37,14 @@ A component can be created using different js patterns:
 
 ```js
 // js/components/test-revealing-pattern.js
+var $ = require('jquery');
 
 module.exports = (function() {
     var test = {};
 
-    test.initialize = function($el, options) {
+    test.initialize = function(el, options) {
         test.text = options.text;
-        $el.click(test.say.bind(this));
+        $(el).click(test.say.bind(this));
     };
 
     test.say = function() {
@@ -61,12 +62,13 @@ module.exports = (function() {
 
 ```js
 // js/components/test-prototype-pattern.js
+var $ = require('jquery');
 
 var test = function() {};
 
-test.prototype.initialize = function($el, options) {
+test.prototype.initialize = function(el, options) {
     this.text = options.text;
-    $el.click(this.say.bind(this));
+    $(el).click(this.say.bind(this));
 };
 
 test.prototype.say = function() {
@@ -80,15 +82,16 @@ module.exports = test;
 
 ```js
 // js/components/test-class.js
+import $ from 'jquery';
 
 export default class Test {
     constructor() {
         this.text = '';
     }
 
-    initialize($el, options) {
+    initialize(el, options) {
         this.text = options.text;
-        $el.click(this.say);
+        $(el).click(this.say);
     }
 
     say() {
