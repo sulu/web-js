@@ -6,6 +6,8 @@ var $ = require('jquery');
 var web = require('./core');
 
 /**
+ * @experimental
+ *
  * Web container for all components and services.
  */
 var lazy = (function lazy() {
