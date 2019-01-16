@@ -1,7 +1,8 @@
 # Changes
 
 ## 2.0.0
-
+ 
+ - BUGFIX: Fix path to index.js of library. #39 
  - ENHANCEMENT: Mark lazy.js implementation as experimental. #38
  - ENHANCEMENT: Remove jQuery as dependency of web core js. #38
  - ENHANCEMENT: Change api request to use json instead of html. #37
