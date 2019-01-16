@@ -2,7 +2,7 @@
   "name": "massive-web",
   "version": "1.5.0",
   "description": "Manage your js components",
-  "main": "src/core.js",
+  "main": "js/core.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/massiveart/web-js.git"
