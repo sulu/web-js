@@ -1,5 +1,9 @@
 # Changes
 
+## 1.5.1
+
+ - ENHANCEMENT: Add package-json.lock file to gitignore. #41
+
 ## 1.5.0
 
  - FEATURE: Added truncate component. #32
