@@ -203,12 +203,15 @@ Generate changelog:
 github_changelog_generator --future-release <version>
 ```
 
-Copy the text of the last release into and get new release.
+Copy the text of the last release into github release description and create new release.
 
 ### 2. Publish release
 
 ```
 git fetch --tags
 git checkout <version>
+# Test which files get packed by npm
+npm pack --dry-run
+# Publish package
 npm publish
 ```

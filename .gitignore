@@ -9,10 +9,10 @@ ehthumbs.db
 Thumbs.db
 
 # PhpStorm-Project
-/.idea/
+.idea
 
 # NPM
-/node_modules
+node_modules
 yarn-error.log
 yarn.lock
 package-json.lock
