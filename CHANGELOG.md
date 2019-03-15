@@ -9,6 +9,10 @@
  - FEATURE: Add support for multiple arguments in service call. #36
  - ENHANCEMENT: Rename src folder to js. #35
 
+## 1.5.1
+
+ - ENHANCEMENT: Add package-json.lock file to gitignore. #41
+
 ## 1.5.0
 
  - FEATURE: Added truncate component. #32
