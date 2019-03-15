@@ -12,6 +12,7 @@ var web = (function web() {
      */
     var web = {};
     var serviceRegistry = {};
+    var componentDefaultOptions = {};
     var componentRegistry = {};
     var componentInstances = {};
 
@@ -114,7 +115,7 @@ var web = (function web() {
         // Instantiate object from base component and init it
         Component = web.getBaseComponent(name);
         instance = new Component();
-        instance.initialize(web.getElement(id), options);
+        instance.initialize(web.getElement(id), Object.assign(componentDefaultOptions[name], options));
 
         // Add component instance to registry
         componentInstances[id] = instance;
@@ -182,10 +183,13 @@ var web = (function web() {
      * with custom component properties
      * @param {String} name
      * @param {Object} component
+     * @param {Object} defaultOptions
      * @method registerComponent
      */
-    web.registerComponent = function registerComponent(name, component) {
+    web.registerComponent = function registerComponent(name, component, defaultOptions) {
         var instance;
+
+        componentDefaultOptions[name] = defaultOptions || {};
 
         if (typeof component === 'object') {
             // When component is a object create function to allow new on it.

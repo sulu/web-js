@@ -125,9 +125,26 @@ var web = window.web = require('massive.web');
 web.registerService('logger', require('./services/log.js'));
 
 // components
-web.registerComponent('test', require('./component/test-revealing-pattern.js'));
-web.registerComponent('other', require('./component/test-prototype-pattern.js'));
-web.registerComponent('more', require('./component/test-class'));
+web.registerComponent('test', require('./components/test-revealing-pattern.js'));
+web.registerComponent('other', require('./components/test-prototype-pattern.js'));
+web.registerComponent('more', require('./components/test-class'), { defaultOption: 'defaultValue' });
+```
+
+When using ES6:
+
+```
+import web from 'massive-web';
+import Test from './components/test'
+import Other from './components/more'
+import Log from './services/log';
+
+
+// services
+web.registerService('logger', Log);
+
+// components
+web.registerComponent('test', Test);
+web.registerComponent('more', Test, { defaultOption: 'defaultValue' });
 ```
 
 ### Embedding in template
