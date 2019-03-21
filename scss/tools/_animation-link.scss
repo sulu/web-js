@@ -1,0 +1,25 @@
+$animatedLinkColor: currentColor !default;
+$animatedLinkSize: 2px !default;
+$animatedLinkSpeed: 0.25s !default;
+
+@mixin animatedLink($color: $animatedLinkColor, $size: $animatedLinkSize) {
+    &:hover,
+    &:focus {
+        animation-duration: $animatedLinkSpeed;
+        animation-name: linkHoverAnimation;
+        background-image: linear-gradient($color, $color);
+        background-position: left bottom;
+        background-repeat: no-repeat;
+        background-size: 100% $size;
+    }
+}
+
+@keyframes linkHoverAnimation {
+    0% {
+        background-size: 0 $animatedLinkSize;
+    }
+
+    100% {
+        background-size: 100% $animatedLinkSize;
+    }
+}
