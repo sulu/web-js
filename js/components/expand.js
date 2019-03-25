@@ -7,7 +7,7 @@ module.exports = function Expand() {
     var expand = {};
 
     /**
-     * @param {HTMLELement} el
+     * @param {HTMLElement} el
      * @param {object} options
      */
     expand.initialize = function initialize(el, options) {

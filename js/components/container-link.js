@@ -1,4 +1,4 @@
-// Container link component.
+// Container link component
 'use strict';
 
 var $ = require('jquery');
@@ -7,7 +7,7 @@ module.exports = function ContainerLink() {
     var containerLink = {};
 
     /**
-     * @param {HTMLELement} el
+     * @param {HTMLElement} el
      */
     containerLink.initialize = function initialize(el) {
         containerLink.$el = $(el);
