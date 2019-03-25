@@ -2,6 +2,11 @@
 
 ## 2.0.0
  
+ - FEATURE: Add animation link hover scss mixin. #46
+ - FEATURE: Add window scroll js component. #45
+ - FEATURE: Add animated menu button mixin. #44
+ - FEATURE: Add animated link scss mixin. #43
+ - FEATURE: Add default options to register component. #42
  - BUGFIX: Fix path to index.js of library. #39 
  - ENHANCEMENT: Mark lazy.js implementation as experimental. #38
  - ENHANCEMENT: Remove jQuery as dependency of web core js. #38
