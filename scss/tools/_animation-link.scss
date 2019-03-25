@@ -1,20 +1,35 @@
 $animatedLinkColor: currentColor !default;
-$animatedLinkSize: 2px !default;
+$animatedLinkSize: 0.1em !default;
 $animatedLinkSpeed: 0.25s !default;
 
-@mixin animatedLink($color: $animatedLinkColor, $size: $animatedLinkSize) {
+@mixin animatedLink($color: $animatedLinkColor) {
+    background-image: linear-gradient($color, $color);
+    background-position: left bottom;
+    background-repeat: no-repeat;
+    background-size: 100% $animatedLinkSize;
+
     &:hover,
     &:focus {
         animation-duration: $animatedLinkSpeed;
-        animation-name: linkHoverAnimation;
-        background-image: linear-gradient($color, $color);
-        background-position: left bottom;
-        background-repeat: no-repeat;
-        background-size: 100% $size;
+        animation-name: linkHover;
     }
 }
 
-@keyframes linkHoverAnimation {
+@mixin animatedLinkHover($color: $animatedLinkColor) {
+    background: none;
+
+    &:hover,
+    &:focus {
+        animation-duration: $animatedLinkSpeed;
+        animation-name: linkHover;
+        background-image: linear-gradient($color, $color);
+        background-position: left bottom;
+        background-repeat: no-repeat;
+        background-size: 100% $animatedLinkSize;
+    }
+}
+
+@keyframes linkHover {
     0% {
         background-size: 0 $animatedLinkSize;
     }
