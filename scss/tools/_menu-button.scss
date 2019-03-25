@@ -1,0 +1,58 @@
+@mixin menuButton($size: 70px, $padding: 20px, $offset: 5px, $lineSize: 2px) {
+    $doublePadding: 40px;
+    $halfLineSize: $lineSize / 2;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: calc(100% - #{$doublePadding}) $lineSize;
+    display: block;
+    height: $size;
+    padding: $padding $padding;
+    position: relative;
+    width: $size;
+
+    &::before,
+    &::after {
+        background: currentColor;
+        bottom: $padding + $offset;
+        content: '';
+        height: $lineSize;
+        left: $padding;
+        position: absolute;
+        transition: all 0.25s;
+        width: calc(100% - #{$doublePadding});
+    }
+
+    &::before {
+        top: $padding + $offset;
+    }
+
+    &--open {
+        background: none;
+
+        &::after {
+            bottom: calc(50% - #{$halfLineSize});
+            transform: rotate(45deg);
+        }
+
+        &::before {
+            top: calc(50% - #{$halfLineSize});
+            transform: rotate(-45deg);
+        }
+    }
+
+    &:hover,
+    &:focus {
+        outline: none;
+
+        &::after {
+            bottom: calc(50% - #{$halfLineSize});
+            transform: rotate(0deg);
+        }
+
+        &::before {
+            top: calc(50% - #{$halfLineSize});
+            transform: rotate(0deg);
+        }
+    }
+}
