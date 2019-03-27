@@ -41,10 +41,11 @@
         }
     }
 
-    &:hover,
     &:focus {
         outline: none;
+    }
 
+    &:hover {
         &::after {
             bottom: calc(50% - #{$halfLineSize});
             transform: rotate(0deg);
