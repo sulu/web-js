@@ -1,9 +1,9 @@
-// Lazy loader based on webpacke bundle loader: https://github.com/webpack-contrib/bundle-loader
+// Lazy loader based on webpack bundle loader: https://github.com/webpack-contrib/bundle-loader
 
 'use strict';
 
 var $ = require('jquery');
-var web = require('./core');
+var web = require('./../../core/core');
 
 /**
  * @experimental

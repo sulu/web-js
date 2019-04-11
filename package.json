@@ -1,19 +1,19 @@
 {
-  "name": "massive-web",
+  "name": "@sulu/web",
   "version": "2.0.0-rc1",
   "description": "Manage your js components",
-  "main": "js/core.js",
+  "main": "packages/core/core.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/massiveart/web-js.git"
+    "url": "https://github.com/sulu/web-js.git"
   },
   "scripts": {
     "lint": "npm run lint:js && npm run lint:css",
     "lint:fix": "npm run lint:js:fix && npm run lint:css:fix",
-    "lint:js": "eslint src",
-    "lint:js:fix": "eslint src --fix",
-    "lint:css": "stylelint scss/**/*.scss",
-    "lint:css:fix": "stylelint scss/**/*.scss --fix"
+    "lint:js": "eslint packages",
+    "lint:js:fix": "eslint packages --fix",
+    "lint:css": "stylelint packages/scss/**/*.scss",
+    "lint:css:fix": "stylelint packages/scss/**/*.scss --fix"
   },
   "keywords": [
     "js",
@@ -22,7 +22,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/massiveart/web-js/issues"
+    "url": "https://github.com/sulu/web-js/issues"
   },
   "peerDependencies": {
     "jquery": ">=1.7.2"

@@ -1,25 +1,25 @@
-[![CircleCi](https://circleci.com/gh/massiveart/web-js.png?style=shield)](https://circleci.com/gh/massiveart/web-js)
-[![npm](https://img.shields.io/npm/v/massive-web.svg)](https://www.npmjs.com/package/massive-web)
-[![Size](https://img.shields.io/github/size/massiveart/web-js/js/core.js.svg)](https://github.com/massiveart/web-js/blob/master/js/core.js)
-[![Install Size](https://packagephobia.now.sh/badge?p=massive-web)](https://packagephobia.now.sh/result?p=massive-web)
+[![CircleCi](https://circleci.com/gh/sulu/web-js.png?style=shield)](https://circleci.com/gh/sulu/web-js)
+[![npm](https://img.shields.io/npm/v/@sulu/web.svg)](https://www.npmjs.com/package/@sulu/web)
+[![Size](https://img.shields.io/github/size/sulu/web-js/js/core.js.svg)](https://github.com/sulu/web-js/blob/master/js/core.js)
+[![Install Size](https://packagephobia.now.sh/badge?p=@sulu/web)](https://packagephobia.now.sh/result?p=@sulu/web)
 
 # Web JS
 
-The web-js in connection with [web component twig extension](https://github.com/massiveart/web-twig)
+The web-js in connection with [web component twig extension](https://github.com/sulu/web-twig)
 gives you simple and efficient way to handle your javascript components over twig.
 
 ## Installation
 
-**Yarn**
-
-```bash
-yarn add massive-web
-```
-
 **NPM**
 
 ```bash
-npm install massive-web
+npm install @sulu/web
+```
+
+**Yarn**
+
+```bash
+yarn add @sulu/web
 ```
 
 ## Usage
@@ -85,10 +85,6 @@ module.exports = test;
 import $ from 'jquery';
 
 export default class Test {
-    constructor() {
-        this.text = '';
-    }
-
     initialize(el, options) {
         this.text = options.text;
         $(el).click(this.say);
@@ -119,7 +115,7 @@ module.exports = {
 
 ```js
 // js/main.js
-var web = window.web = require('massive.web');
+var web = window.web = require('@sulu/web');
 
 // services
 web.registerService('logger', require('./services/log.js'));
@@ -133,7 +129,7 @@ web.registerComponent('more', require('./components/test-class'), { defaultOptio
 When using ES6:
 
 ```
-import web from 'massive-web';
+import web from '@sulu/web';
 import Test from './components/test'
 import Other from './components/more'
 import Log from './services/log';
@@ -153,7 +149,7 @@ For efficient handling its recommended to use it with a template engine like twi
 
 #### Twig
 
-For twig embedding see the [web component twig extension](https://github.com/massiveart/web-twig).
+For twig embedding see the [web component twig extension](https://github.com/sulu/web-twig).
 
 #### HTML
 

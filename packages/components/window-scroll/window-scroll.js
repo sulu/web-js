@@ -1,4 +1,5 @@
 // Window scroll component
+
 'use strict';
 
 module.exports = function WindowScroll() {

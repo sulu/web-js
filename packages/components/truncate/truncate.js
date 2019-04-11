@@ -14,7 +14,7 @@ module.exports = function Truncate() {
      *    Lorem ipsum ...
      * </div>
      *
-     * import truncate from 'massive-web/src/components/truncate';
+     * import truncate from '@sulu/web/packages/components/truncate';
      * truncate.initialize($('#truncate'), {});
      *
      * @param {HTMLElement} el
