@@ -1,4 +1,5 @@
 // Container link component
+
 'use strict';
 
 var $ = require('jquery');

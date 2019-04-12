@@ -1,4 +1,5 @@
 // Expand trigger component module
+
 'use strict';
 
 var $ = require('jquery');

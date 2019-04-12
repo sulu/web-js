@@ -1,7 +1,8 @@
 # Changes
 
 ## 2.0.0
- 
+
+ - ENHANCEMENT: Add possibility to extend container link attributes. #48
  - BUGFIX: Fix menu button for chrome. #47
  - FEATURE: Add animation link hover scss mixin. #46
  - FEATURE: Add window scroll js component. #45
