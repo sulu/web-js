@@ -115,7 +115,7 @@ var web = (function web() {
         // Instantiate object from base component and init it
         Component = web.getBaseComponent(name);
         instance = new Component();
-        instance.initialize(web.getElement(id), Object.assign(componentDefaultOptions[name], options));
+        instance.initialize(web.getElement(id), Object.assign({}, componentDefaultOptions[name], options));
 
         // Add component instance to registry
         componentInstances[id] = instance;
