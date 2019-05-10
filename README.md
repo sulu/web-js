@@ -1,6 +1,6 @@
 [![CircleCi](https://circleci.com/gh/sulu/web-js.png?style=shield)](https://circleci.com/gh/sulu/web-js)
 [![npm](https://img.shields.io/npm/v/@sulu/web.svg)](https://www.npmjs.com/package/@sulu/web)
-[![Size](https://img.shields.io/github/size/sulu/web-js/js/core.js.svg)](https://github.com/sulu/web-js/blob/master/js/core.js)
+[![Size](https://img.shields.io/github/size/sulu/web-js/packages/core/core.js.svg)](https://github.com/sulu/web-js/blob/master/packages/core/core.js)
 [![Install Size](https://packagephobia.now.sh/badge?p=@sulu/web)](https://packagephobia.now.sh/result?p=@sulu/web)
 
 # Web JS
