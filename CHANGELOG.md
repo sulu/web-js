@@ -2,6 +2,7 @@
 
 ## 2.0.0
 
+ - FEATURE: Add size parameter for animated link. #51
  - BUGFIX: Fix corejs options overwrite between components. #50
  - ENHANCEMENT: Rename to @sulu/web and restructure repository. #49
  - ENHANCEMENT: Add possibility to extend container link attributes. #48
