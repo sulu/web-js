@@ -1,40 +1,55 @@
 $animatedLinkColor: currentColor !default;
 $animatedLinkSize: 0.1em !default;
 $animatedLinkSpeed: 0.25s !default;
+$animatedLinkExistKeyframes: ();
 
-@mixin animatedLink($color: $animatedLinkColor) {
+@function animatedKeyFrameName($size) {
+    @return linkHover#{$size * 10000};
+}
+
+@mixin animatedLinkKeyFrames($size) {
+    @if not map-has-key($animatedLinkExistKeyframes, $size) {
+        @keyframes #{animatedKeyFrameName($size)} {
+            0% {
+                background-size: 0 $size;
+            }
+
+            100% {
+                background-size: 100% $size;
+            }
+        }
+    }
+
+    $animatedLinkExistKeyframes: map-merge($animatedLinkExistKeyframes, ($size: $size)) !global;
+}
+
+@mixin animatedLink($color: $animatedLinkColor, $size: $animatedLinkSize) {
     background-image: linear-gradient($color, $color);
     background-position: left bottom;
     background-repeat: no-repeat;
-    background-size: 100% $animatedLinkSize;
+    background-size: 100% $size;
 
     &:hover,
     &:focus {
         animation-duration: $animatedLinkSpeed;
-        animation-name: linkHover;
+        animation-name: animatedKeyFrameName($size);
     }
+
+    @include animatedLinkKeyFrames($size);
 }
 
-@mixin animatedLinkHover($color: $animatedLinkColor) {
+@mixin animatedLinkHover($color: $animatedLinkColor, $size: $animatedLinkSize) {
     background: none;
 
     &:hover,
     &:focus {
         animation-duration: $animatedLinkSpeed;
-        animation-name: linkHover;
+        animation-name: animatedKeyFrameName($size);
         background-image: linear-gradient($color, $color);
         background-position: left bottom;
         background-repeat: no-repeat;
-        background-size: 100% $animatedLinkSize;
-    }
-}
-
-@keyframes linkHover {
-    0% {
-        background-size: 0 $animatedLinkSize;
+        background-size: 100% $size;
     }
 
-    100% {
-        background-size: 100% $animatedLinkSize;
-    }
+    @include animatedLinkKeyFrames($size);
 }
