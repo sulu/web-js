@@ -22,6 +22,26 @@ npm install @sulu/web
 yarn add @sulu/web
 ```
 
+## IE Support
+
+To Support IE 11 you need a polyfill for `object.assign` function e.g.:
+
+```bash
+npm install core-js --save-dev
+```
+
+or
+
+```bash
+yarn install core-js --dev
+```
+
+and at the top of your main.js file require the polyfill:
+
+```js
+import 'core-js/features/object/assign';
+```
+
 ## Usage
 
 ### Create your first component
