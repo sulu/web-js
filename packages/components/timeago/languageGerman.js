@@ -26,7 +26,4 @@ module.exports = function LanguageGerman() {
     };
 
     timeagoJS.register('de', locale);
-    timeagoJS.register('de_AT', locale);
-    timeagoJS.register('de_DE', locale);
-    timeagoJS.register('de_CH', locale);
 };

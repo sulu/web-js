@@ -12,11 +12,10 @@ module.exports = function Timeago() {
      * @param {HTMLElement} el
      * @param {object} options
      * @param {Date} options.date
-     * @param {string} [options.locale=en_US]
      */
     timeago.initialize = function initialize(el, options) {
         var date = options.date;
-        var locale = options.locale || 'en_US';
+        var locale = document.documentElement.lang;
 
         $(el).html(timeagoJS.format(date, locale));
     };

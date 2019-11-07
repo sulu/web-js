@@ -25,15 +25,13 @@
     "url": "https://github.com/sulu/web-js/issues"
   },
   "peerDependencies": {
-    "jquery": ">=1.7.2"
+    "jquery": ">=1.7.2",
+    "timeago.js": "^4.0.1"
   },
   "devDependencies": {
     "eslint": "^4.19.1",
     "eslint-config-ma": "^1.0.1",
     "stylelint": "^9.2.1",
     "stylelint-config-ma": "^1.1.1"
-  },
-  "dependencies": {
-    "timeago.js": "^4.0.1"
   }
 }
