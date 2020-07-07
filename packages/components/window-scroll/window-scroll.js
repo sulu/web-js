@@ -26,7 +26,7 @@ module.exports = function WindowScroll() {
             'scroll',
             windowScroll.checkPosition.bind(this, el),
             {
-                passive: true
+                passive: true,
             }
         );
         windowScroll.checkPosition(el);
@@ -49,6 +49,6 @@ module.exports = function WindowScroll() {
     };
 
     return {
-        initialize: windowScroll.initialize
+        initialize: windowScroll.initialize,
     };
 };

@@ -56,7 +56,7 @@ module.exports = function ContainerLink() {
     };
 
     return {
-        initialize: containerLink.initialize
+        initialize: containerLink.initialize,
     };
 };
 

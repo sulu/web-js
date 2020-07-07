@@ -68,6 +68,6 @@ module.exports = function Expand() {
     };
 
     return {
-        initialize: expand.initialize
+        initialize: expand.initialize,
     };
 };

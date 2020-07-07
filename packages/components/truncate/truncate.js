@@ -67,6 +67,6 @@ module.exports = function Truncate() {
     };
 
     return {
-        initialize: truncate.initialize
+        initialize: truncate.initialize,
     };
 };

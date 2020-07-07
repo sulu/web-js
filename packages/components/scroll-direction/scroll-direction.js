@@ -31,7 +31,7 @@ module.exports = function ScrollDirection() {
             'scroll',
             scrollDirection.checkPosition.bind(this, el),
             {
-                passive: true
+                passive: true,
             }
         );
         scrollDirection.checkPosition(el);
@@ -70,6 +70,6 @@ module.exports = function ScrollDirection() {
     };
 
     return {
-        initialize: scrollDirection.initialize
+        initialize: scrollDirection.initialize,
     };
 };
