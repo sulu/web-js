@@ -13,7 +13,13 @@ module.exports = function WindowScroll() {
         windowScroll.isTop = true;
         windowScroll.offset = options.offset ? options.offset : 0;
         windowScroll.toggleClass = el.className.split(' ')[0] + '--scroll';
-        window.addEventListener('scroll', windowScroll.checkPosition.bind(this, el));
+        window.addEventListener(
+            'scroll',
+            windowScroll.checkPosition.bind(this, el),
+            {
+                passive: true
+            }
+        );
         windowScroll.checkPosition(el);
     };
 
