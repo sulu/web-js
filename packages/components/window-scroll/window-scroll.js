@@ -5,7 +5,16 @@
 module.exports = function WindowScroll() {
     var windowScroll = {};
 
-    /**
+    /*
+     * @example
+     * <div id="window-scroll" class="Menu">
+     *    Lorem ipsum ...
+     * </div>
+     *
+     * import WindowScroll from '@sulu/web/packages/components/window-scroll';
+     * var component = new WindowScroll();
+     * component.initialize(document.getElementById('window-scroll'), {});
+     *
      * @param {HTMLElement} el
      * @param {object} options
      */

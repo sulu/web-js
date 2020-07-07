@@ -6,6 +6,15 @@ module.exports = function ScrollDirection() {
     var scrollDirection = {};
 
     /**
+     * @example
+     * <div id="scroll-direction" class="menu">
+     *    Lorem ipsum ...
+     * </div>
+     *
+     * import ScrollDirection from '@sulu/web/packages/components/scroll-direction';
+     * var component = new ScrollDirection();
+     * component.initialize(document.getElementById('scroll-direction'), {});
+     *
      * @param {HTMLElement} el
      * @param {object} options
      */

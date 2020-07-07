@@ -14,8 +14,9 @@ module.exports = function Truncate() {
      *    Lorem ipsum ...
      * </div>
      *
-     * import truncate from '@sulu/web/packages/components/truncate';
-     * truncate.initialize($('#truncate'), {});
+     * import Truncate from '@sulu/web/packages/components/truncate';
+     * var component = new Truncate();
+     * component.initialize(document.getElementById('truncate'), {});
      *
      * @param {HTMLElement} el
      * @param {object} options
