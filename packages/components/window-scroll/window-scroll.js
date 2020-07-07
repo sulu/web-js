@@ -2,10 +2,12 @@
 
 'use strict';
 
+var passiveEvents = require('../services/passive-events');
+
 module.exports = function WindowScroll() {
     var windowScroll = {};
 
-    /*
+    /**
      * @example
      * <div id="window-scroll" class="Menu">
      *    Lorem ipsum ...
@@ -25,7 +27,7 @@ module.exports = function WindowScroll() {
         window.addEventListener(
             'scroll',
             windowScroll.checkPosition.bind(this, el),
-            options.passive ? {
+            passiveEvents ? {
                 passive: true,
             } : false
         );

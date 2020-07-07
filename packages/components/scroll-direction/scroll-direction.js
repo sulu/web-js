@@ -2,6 +2,8 @@
 
 'use strict';
 
+var passiveEvents = require('../services/passive-events');
+
 module.exports = function ScrollDirection() {
     var scrollDirection = {};
 
@@ -30,7 +32,7 @@ module.exports = function ScrollDirection() {
         window.addEventListener(
             'scroll',
             scrollDirection.checkPosition.bind(this, el),
-            options.passive ? {
+            passiveEvents ? {
                 passive: true,
             } : false
         );
