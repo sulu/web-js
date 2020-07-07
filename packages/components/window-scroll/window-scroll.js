@@ -25,9 +25,9 @@ module.exports = function WindowScroll() {
         window.addEventListener(
             'scroll',
             windowScroll.checkPosition.bind(this, el),
-            {
+            options.passive ? {
                 passive: true,
-            }
+            } : false
         );
         windowScroll.checkPosition(el);
     };

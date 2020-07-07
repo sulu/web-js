@@ -30,9 +30,9 @@ module.exports = function ScrollDirection() {
         window.addEventListener(
             'scroll',
             scrollDirection.checkPosition.bind(this, el),
-            {
+            options.passive ? {
                 passive: true,
-            }
+            } : false
         );
         scrollDirection.checkPosition(el);
     };
