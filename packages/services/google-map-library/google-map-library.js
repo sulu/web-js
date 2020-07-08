@@ -7,7 +7,7 @@ var $ = require('jquery');
 var GoogleMapLibrary = (function() {
     var googleMapLibrary = {
         key: '',
-        promise: null
+        promise: null,
     };
 
     /**

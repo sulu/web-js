@@ -20,7 +20,7 @@ var Api = (function() {
             dataType: 'json',
             url: uri,
             method: method,
-            data: data
+            data: data,
         });
     };
 

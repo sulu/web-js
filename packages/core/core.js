@@ -286,7 +286,7 @@ var web = (function web() {
         getComponent: web.getComponent,
         hasComponent: web.hasComponent,
         hasService: web.hasService,
-        removeComponent: web.removeComponent
+        removeComponent: web.removeComponent,
     };
 })();
 

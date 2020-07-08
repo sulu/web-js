@@ -8,6 +8,19 @@ module.exports = function Expand() {
     var expand = {};
 
     /**
+     * @example
+     * <button id="expand" class="button">
+     *    Lorem ipsum ...
+     * </button>
+     *
+     * <div id="expand-container" class="container">
+     *     Container
+     * </div>
+     *
+     * import Expand from '@sulu/web/packages/components/expand';
+     * var component = new Expand();
+     * component.initialize(document.getElementById('expand'), {});
+     *
      * @param {HTMLElement} el
      * @param {object} options
      */
@@ -55,6 +68,6 @@ module.exports = function Expand() {
     };
 
     return {
-        initialize: expand.initialize
+        initialize: expand.initialize,
     };
 };

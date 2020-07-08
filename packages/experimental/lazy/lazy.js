@@ -15,7 +15,7 @@ var lazy = (function lazy() {
         componentRegistry: {},
         serviceRegistry: {},
         deferredComponents: {},
-        deferredServices: {}
+        deferredServices: {},
     };
 
     /**
@@ -130,7 +130,7 @@ var lazy = (function lazy() {
         registerComponent: lazy.registerComponent,
         registerService: lazy.registerService,
         startComponents: lazy.startComponents,
-        startServices: lazy.startServices
+        startServices: lazy.startServices,
     };
 })();
 
