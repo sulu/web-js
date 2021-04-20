@@ -1,0 +1,23 @@
+// Components should have no spacing around them so tag itself should also avoid to have spacing
+// This used by p, ul and ol tag make sure they have spacing between them but not around them
+$spacesBetween: (
+    default: 16px
+);
+
+@mixin spaceBetween($spaces: $spacesBetween) {
+    margin-top: 0;
+
+    @include mediaEachMax((
+        margin-bottom: $spaces,
+    ));
+
+    * + & {
+        @include mediaEachMax((
+            margin-top: $spaces,
+        ));
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}

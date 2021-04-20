@@ -48,23 +48,42 @@ import 'core-js/features/object/assign';
 
 A component can be created using different js patterns:
 
+ - [JS Class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
  - [Revealing pattern](https://addyosmani.com/resources/essentialjsdesignpatterns/book/#revealingmodulepatternjavascript)
  - [Prototype pattern](https://addyosmani.com/resources/essentialjsdesignpatterns/book/#prototypepatternjavascript)
- - [ECMAScript 2015 class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
  - and more which works with multiple instances you simple need to create a initialize method
 
+**Using ECMAScript 2015 class**
+
+```js
+// js/components/test-class.js
+export default class Test {
+    initialize(el, options) {
+        this.text = options.text;
+        el.onclick = this.say;
+    }
+
+    say() {
+        alert(this.text);
+    }
+}
+```
+
+<details>
+
+<summary>
 **Using Revealing pattern**
+</summary>
 
 ```js
 // js/components/test-revealing-pattern.js
-var $ = require('jquery');
 
 module.exports = (function() {
     var test = {};
 
     test.initialize = function(el, options) {
         test.text = options.text;
-        $(el).click(test.say.bind(this));
+        el.onclick = this.say;
     };
 
     test.say = function() {
@@ -73,22 +92,26 @@ module.exports = (function() {
 
     return {
         initialize: test.initialize,
-        say: test.say
+        say: test.say,
     };
 });
 ```
 
+</details>
+
+<details>
+
+<summary>
 **Using Prototype pattern**
+</summary>
 
 ```js
 // js/components/test-prototype-pattern.js
-var $ = require('jquery');
-
 var test = function() {};
 
 test.prototype.initialize = function(el, options) {
     this.text = options.text;
-    $(el).click(this.say.bind(this));
+    el.onclick = this.say;
 };
 
 test.prototype.say = function() {
@@ -98,23 +121,7 @@ test.prototype.say = function() {
 module.exports = test;
 ```
 
-**Using ECMAScript 2015 class**
-
-```js
-// js/components/test-class.js
-import $ from 'jquery';
-
-export default class Test {
-    initialize(el, options) {
-        this.text = options.text;
-        $(el).click(this.say);
-    }
-
-    say() {
-        alert(this.text);
-    }
-}
-```
+</details>
 
 ### Create your first service
 
@@ -134,26 +141,10 @@ module.exports = {
 ### Initialize web.js and registering your components and services
 
 ```js
-// js/main.js
-var web = window.web = require('@sulu/web');
-
-// services
-web.registerService('logger', require('./services/log.js'));
-
-// components
-web.registerComponent('test', require('./components/test-revealing-pattern.js'));
-web.registerComponent('other', require('./components/test-prototype-pattern.js'));
-web.registerComponent('more', require('./components/test-class'), { defaultOption: 'defaultValue' });
-```
-
-When using ES6:
-
-```
 import web from '@sulu/web';
 import Test from './components/test'
 import Other from './components/more'
 import Log from './services/log';
-
 
 // services
 web.registerService('logger', Log);
@@ -165,7 +156,7 @@ web.registerComponent('more', Test, { defaultOption: 'defaultValue' });
 
 ### Embedding in template
 
-For efficient handling its recommended to use it with a template engine like twig.
+For efficient handling it's recommended to use it with a template engine like twig.
 
 #### Twig
 
@@ -188,14 +179,22 @@ You can also use without a template engine and by calling the startComponents an
 <script>
     web.startComponents([
         {name: 'test', id: 'test-1', { text: 'Hello' }}, 
-        {name: 'test', id: 'test-2', { text: 'Bye' }}
+        {name: 'test', id: 'test-2', { text: 'Bye' }},
     ]);
     
     web.callServices([
-        {name: 'logger', func: 'log', args: ['Hello']}
+        {name: 'logger', func: 'log', args: ['Hello']},
     ]);
 </script>
 ```
+
+The `@sulu/web-js` provides some [`components`](packages/components)  and [`services`](packages/services)
+which can be registered in your container and be used.
+
+## Web CSS
+
+Beside the `js` the `@sulu/web-js` is also shipped with some `scss` tools to make also creating css
+easier. They can be found in the [`scss`](packages/scss)  directory.
 
 ## Version Update & Publish to NPM (docs for maintainers)
 
