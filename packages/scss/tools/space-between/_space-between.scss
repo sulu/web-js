@@ -17,9 +17,19 @@
 //         mobile: 14px,
 //     ));
 // }
+//
+// Example 3:
+//
+// $spacesBetween: (
+//    default: 16px
+// );
+//
+// p {
+//     @include spaceBetween();
+// }
 $spacesBetween: (
     default: 16px
-);
+) !default;
 
 @mixin spaceBetween($spaces: $spacesBetween) {
     margin-top: 0;
