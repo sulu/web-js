@@ -21,11 +21,11 @@
     @each $key, $value in $map {
         @if $calculationType == '*' {
             $value: $value * $param;
-        } @elseif $calculationType == '/' {
+        } @else if $calculationType == '/' {
             $value: $value / $param;
-        } @elseif $calculationType == '+' {
+        } @else if $calculationType == '+' {
             $value: $value + $param;
-        } @elseif $calculationType == '-' {
+        } @else if $calculationType == '-' {
             $value: $value - $param;
         } @else {
             @error 'Following calculation type is not supported: #{$calculationType}';
