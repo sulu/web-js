@@ -1,0 +1,42 @@
+$font-size-line-height-difference: 4px !default;
+
+// Returns the computed line-height the caller should have.
+//
+// @param {Number | String} $difference - Difference from line-height to font-size. Should be positive.
+//
+// @return {String}
+//
+@function line-height($difference: $font-size-line-height-difference) {
+    @return calc(1em + #{$difference});
+}
+
+// Truncates the element based on amount of lines and line-height.
+// Do not override the CSS properties that this mixin adds!
+//
+// Usage:
+// p.truncate-3 {
+//     font-size: 16px;
+//     @include truncate(3);
+// }
+//
+// @param {Number} $lines - Amount of lines that should be shown.
+// @param {Number | String} $lineHeight - Line-height that will be used for the calculation of max-height.
+//     Should be greater than or equal font-size.
+//
+// @throws 'Parameter "lines" needs to be zero or a positive integer!'
+//
+@mixin truncate($lines: 1, $lineHeight: line-height()) {
+    @if type-of($lines) != 'number'
+        or not unitless($lines)
+        or $lines < 0
+        or round($lines) != $lines {
+        @error 'Parameter "lines" needs to be zero or a positive integer!';
+    }
+    display: block;
+    overflow: hidden;
+    box-sizing: content-box;
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: $lineHeight;
+    max-height: calc(#{$lineHeight} * #{$lines});
+}
