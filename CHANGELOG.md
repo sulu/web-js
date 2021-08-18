@@ -1,5 +1,10 @@
 # Changes
 
+## 2.1.0
+
+ - FEATURE: Add scroll direction component (#55)
+ - FEATURE: Add space between mixin (#56)
+
 ## 2.0.0
 
  - FEATURE: Add size parameter for animated link. #51
