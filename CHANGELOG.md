@@ -2,6 +2,7 @@
 
 ## 2.1.1
 
+ - BUGFIX: Fix path to passive events for scroll direction (#58)
  - BUGFIX: Fix passive events path (#57)
 
 ## 2.1.0
