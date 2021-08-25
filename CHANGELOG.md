@@ -1,5 +1,9 @@
 # Changes
 
+## 2.1.1
+
+ - BUGFIX: Fix passive events path (#57)
+
 ## 2.1.0
 
  - FEATURE: Add scroll direction component (#55)
