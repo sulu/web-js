@@ -2,7 +2,7 @@
 
 'use strict';
 
-var passiveEvents = require('../services/passive-events');
+var passiveEvents = require('../../services/passive-events/passive-events');
 
 module.exports = function WindowScroll() {
     var windowScroll = {};
