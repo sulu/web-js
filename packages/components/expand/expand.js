@@ -2,8 +2,6 @@
 
 'use strict';
 
-var $ = require('jquery');
-
 module.exports = function Expand() {
     var expand = {};
 
@@ -25,31 +23,33 @@ module.exports = function Expand() {
      * @param {object} options
      */
     expand.initialize = function initialize(el, options) {
-        // Define necessary component elements, instance $el handed in on initialization
-        expand.$el = $(el);
-        expand.id = expand.$el.attr('id');
+        expand.el = el;
+        expand.id = el.id;
         expand.closeOnEsc = options.closeOnEsc ? options.closeOnEsc : false;
-        expand.$container = options.container ? $('#' + options.container) : $('#' + expand.id + '-container');
+        expand.container = options.container
+            ? document.getElementById(options.container)
+            : document.getElementById(expand.id + '-container');
         expand.modifier = options.modifier ? options.modifier : '--open';
-        expand.toggleButtonClass = expand.getFirstClass(expand.$el) + expand.modifier;
-        expand.toggleContainerClass = expand.getFirstClass(expand.$container) + expand.modifier;
+        expand.toggleButtonClass = expand.getFirstClass(expand.el) + expand.modifier;
+        expand.toggleContainerClass = expand.getFirstClass(expand.container) + expand.modifier;
 
         // Run init functions
         expand.bindEvents();
     };
 
     /**
-     * @param {jQuery} $element
+     * @param {HTMLElement} element
+     * @returns {string}
      */
-    expand.getFirstClass = function getFirstClass($element) {
-        return $element.attr('class').split(' ')[0];
+    expand.getFirstClass = function getFirstClass(element) {
+        return element.getAttribute('class').split(' ')[0];
     };
 
     expand.bindEvents = function bindEvents() {
-        expand.$el.on('click', expand.toggle);
+        expand.el.addEventListener('click', expand.toggle);
 
         if (expand.closeOnEsc) {
-            $(document).keyup(function(event) {
+            document.addEventListener('keyup', function(event) {
                 if (event.keyCode === 27) {
                     expand.close();
                 }
@@ -58,13 +58,13 @@ module.exports = function Expand() {
     };
 
     expand.toggle = function toggle() {
-        expand.$el.toggleClass(expand.toggleButtonClass);
-        expand.$container.toggleClass(expand.toggleContainerClass);
+        expand.el.classList.toggle(expand.toggleButtonClass);
+        expand.container.classList.toggle(expand.toggleContainerClass);
     };
 
     expand.close = function close() {
-        expand.$el.removeClass(expand.toggleButtonClass);
-        expand.$container.removeClass(expand.toggleContainerClass);
+        expand.el.classList.remove(expand.toggleButtonClass);
+        expand.container.classList.remove(expand.toggleContainerClass);
     };
 
     return {
