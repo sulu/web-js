@@ -61,7 +61,7 @@ module.exports = function Accordion() {
         }
 
         accordion.modifier = options.modifier || '--open';
-        accordion.firstAccordionItemClass = accordion.items[0].container.classList[0];
+        accordion.firstAccordionItemClass = accordion.items[0].container.classList[0] || '';
         accordion.accordionItemActiveClass = accordion.firstAccordionItemClass + accordion.modifier;
 
         accordion.addClickListenersToAccordionButtons();
