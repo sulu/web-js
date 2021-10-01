@@ -13,7 +13,7 @@ module.exports = function Accordion() {
      * <div id="accordion">
      *    <section class="collapse">
      *        <h4 id="accordion-title-1">
-     *            <button aria-expanded="false" aria-controls="accordion-body-1">
+     *            <button id="accordion-button-1" aria-expanded="false" aria-controls="accordion-body-1">
      *                Header 1
      *            </button>
      *        </h4>
@@ -25,12 +25,12 @@ module.exports = function Accordion() {
      *
      *    <section class="collapse">
      *        <h4 id="accordion-title-2">
-     *            <button aria-expanded="false" aria-controls="accordion-body-2">
+     *            <button id="accordion-button-2" aria-expanded="false" aria-controls="accordion-body-2">
      *                Header 2
      *            </button>
      *        </h4>
      *
-     *        <div id="accordion-body-2" aria-hidden="true" aria-labelledby="accordion-title-2">
+     *        <div id="accordion-body-2" aria-hidden="true" aria-labelledby="accordion-button-2">
      *            Content 2
      *        </div>
      *    </section>
