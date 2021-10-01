@@ -87,18 +87,22 @@ module.exports = function Accordion() {
         // Close other items
         for (i = 0; i < accordion.items.length; i++) {
             if (accordion.items[i].container !== item.container) {
-                accordion.items[i].container.classList.remove(this.accordionItemActiveClass);
+                accordion.items[i].container.classList.remove(accordion.accordionItemActiveClass);
                 accordion.items[i].body.setAttribute('aria-hidden', 'true');
                 accordion.items[i].button.setAttribute('aria-expanded', 'false');
             }
         }
 
         // Toggle current item
-        item.container.classList.toggle(this.accordionItemActiveClass);
+        item.container.classList.toggle(accordion.accordionItemActiveClass);
         accordion.toggleAttribute(item.button, 'aria-expanded');
         accordion.toggleAttribute(item.body, 'aria-hidden');
     };
 
+    /**
+     * @param {HTMLElement} element
+     * @param {string} attributeName
+     */
     accordion.toggleAttribute = function toggleAttribute(element, attributeName) {
         element.setAttribute(
             attributeName,
