@@ -11,7 +11,7 @@ module.exports = function Toggle() {
      *    Lorem ipsum ...
      * </button>
      *
-     * import Toggle from '@sulu/web/packages/components/toggle';
+     * import Toggle from '@sulu/web/packages/components/toggle/toggle';
      * var component = new Toggle();
      * component.initialize(document.getElementById('toggle'), {});
      *
