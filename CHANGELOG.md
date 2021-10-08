@@ -1,5 +1,9 @@
 # Changes
 
+## 2.2.0
+
+ - FEATURE: Add toggle component.
+
 ## 2.1.1
 
  - BUGFIX: Fix path to passive events for scroll direction (#58)
