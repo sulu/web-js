@@ -36,10 +36,10 @@ module.exports = function Toggle() {
     };
 
     toggle.bindEvents = function bindEvents() {
-        toggle.el.addEventListener('click', toggle.toggle);
+        toggle.el.addEventListener('click', toggle.toggleClass);
     };
 
-    toggle.toggle = function toggle() {
+    toggle.toggleClass = function toggleClass() {
         toggle.el.classList.toggle(toggle.toggleButtonClass);
     };
 
