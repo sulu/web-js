@@ -20,8 +20,7 @@ module.exports = function Toggle() {
      */
     toggle.initialize = function initialize(el, options) {
         toggle.el = el;
-        toggle.id = el.id;
-        toggle.modifier = options.modifier ? options.modifier : '--active';
+        toggle.modifier = options.modifier ? options.modifier : '--open';
         toggle.toggleButtonClass = toggle.getFirstClass(toggle.el) + toggle.modifier;
 
         // Run init functions
