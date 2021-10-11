@@ -71,7 +71,7 @@ module.exports = function Tabs() {
      *
      * @param {HTMLElement} el
      */
-    tabs.initialize = function initialize(el, options) {
+    tabs.initialize = function initialize(el) {
         tabs.items = [];
         el.querySelector('[role=tablist]').querySelectorAll('[role=tab]').forEach(function(item) {
             tabs.items.push({
@@ -95,16 +95,16 @@ module.exports = function Tabs() {
             item.button.addEventListener('keydown', (event) => {
                 var newIndex = null;
 
-                if (event.keyCode === 37 || event.keyCode === 38) { // left key and up key
+                if (event.keyCode === 37 || event.keyCode === 38) { // Left key and up key
                     newIndex = index - 1;
-                } else if (event.keyCode === 39 || event.keyCode === 40) { // right key and down key
+                } else if (event.keyCode === 39 || event.keyCode === 40) { // Right key and down key
                     newIndex = index + 1;
-                } else if (event.keyCode === 35) { // end key
+                } else if (event.keyCode === 35) { // End key
                     newIndex = tabs.items.length - 1;
-                } else if (event.keyCode === 36) { // home key
+                } else if (event.keyCode === 36) { // Home key
                     newIndex = 0;
                 }
-                
+
                 if (tabs.items[newIndex]) {
                     tabs.items[newIndex].button.focus();
                 }
