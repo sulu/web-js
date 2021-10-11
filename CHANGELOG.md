@@ -2,6 +2,7 @@
 
 ## 2.3.0
 
+ - FEATURE: Add tabs component.
  - FEATURE: Add toggle component.
 
 ## 2.2.0
