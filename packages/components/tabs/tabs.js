@@ -72,7 +72,7 @@ module.exports = function Tabs() {
      *
      * @param {HTMLElement} el
      */
-    tabs.initialize = function initialize(el) {
+    tabs.initialize = function initialize(el, options) {
         tabs.items = [];
         el.querySelector('[role=tablist]').querySelectorAll('[role=tab]').forEach(function(item) {
             tabs.items.push({
@@ -85,12 +85,30 @@ module.exports = function Tabs() {
     };
 
     tabs.bindEvents = function bindEvents() {
-        tabs.items.forEach((item) => {
+        tabs.items.forEach((item, index) => {
             item.button.addEventListener('click', (event) => {
                 event.preventDefault();
                 event.stopPropagation();
 
                 tabs.toggle(item);
+            });
+
+            item.button.addEventListener('keydown', (event) => {
+                var newIndex = null;
+
+                if (event.keyCode === 37 || event.keyCode === 38) { // left key and up key
+                    newIndex = index - 1;
+                } else if (event.keyCode === 39 || event.keyCode === 40) { // right key and down key
+                    newIndex = index + 1;
+                } else if (event.keyCode === 35) { // end key
+                    newIndex = tabs.items.length - 1;
+                } else if (event.keyCode === 36) { // home key
+                    newIndex = 0;
+                }
+                
+                if (tabs.items[newIndex]) {
+                    tabs.items[newIndex].button.focus();
+                }
             });
         });
     };
@@ -106,11 +124,13 @@ module.exports = function Tabs() {
             if (tabs.items[i] !== item) {
                 tabs.items[i].body.setAttribute('hidden', true);
                 tabs.items[i].button.setAttribute('aria-selected', 'false');
+                tabs.items[i].button.setAttribute('tabindex', '-1');
             }
         }
 
         // Toggle current item
         item.button.setAttribute('aria-selected', 'true');
+        item.button.removeAttribute('tabindex');
         item.body.removeAttribute('hidden');
     };
 
