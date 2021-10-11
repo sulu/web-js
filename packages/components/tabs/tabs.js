@@ -29,8 +29,7 @@ module.exports = function Tabs() {
      *             aria-selected="false"
      *             aria-controls="complexcomplex"
      *             id="complex"
-     *             tabindex="-1"
-     *             data-deletable="">
+     *             tabindex="-1">
      *       Joke
      *     </button>
      *   </div>
