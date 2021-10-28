@@ -1,5 +1,9 @@
 # Changes
 
+## 2.4.0
+
+ - FEATURE: Add scroll menu component.
+
 ## 2.3.0
 
  - FEATURE: Add tabs component.
