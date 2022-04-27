@@ -35,7 +35,7 @@ module.exports = function Truncate() {
         truncate.calculateRegex();
         truncate.calculateText();
 
-        $(window).on('resize', debounce(truncate.calculateText, truncate.debounceDelay));
+        $(window).on('load resize', debounce(truncate.calculateText, truncate.debounceDelay));
     };
 
     /**
