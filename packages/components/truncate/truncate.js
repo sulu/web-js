@@ -3,7 +3,7 @@
 'use strict';
 
 var $ = require('jquery');
-var debounce = require('../services/debounce');
+var debounce = require('../../services/debounce/debounce');
 
 module.exports = function Truncate() {
     var truncate = {};
