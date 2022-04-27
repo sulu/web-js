@@ -1,5 +1,10 @@
 # Changes
 
+## 2.4.1
+
+ - BUGFIX: Fix Truncate component on window load
+ - BUGFIX: Fix truncate debounce path
+
 ## 2.4.0
 
  - FEATURE: Add scroll menu component.
