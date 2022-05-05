@@ -3,7 +3,7 @@
 'use strict';
 
 var $ = require('jquery');
-var debounce = require('../services/debounce');
+var debounce = require('../../services/debounce/debounce');
 
 module.exports = function Truncate() {
     var truncate = {};
@@ -35,7 +35,7 @@ module.exports = function Truncate() {
         truncate.calculateRegex();
         truncate.calculateText();
 
-        $(window).on('resize', debounce(truncate.calculateText, truncate.debounceDelay));
+        $(window).on('load resize', debounce(truncate.calculateText, truncate.debounceDelay));
     };
 
     /**
