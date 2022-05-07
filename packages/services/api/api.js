@@ -25,14 +25,32 @@ var Api = (function() {
     };
 
     // -------- HTTP VERBS ----------
+    /**
+     * @param {String} uri
+     * @param {Object} data
+     *
+     * @returns {promise}
+     */
     api.get = function(uri, data) {
         return ajax('get', uri, data);
     };
 
+    /**
+     * @param {String} uri
+     * @param {Object} data
+     *
+     * @returns {promise}
+     */
     api.post = function(uri, data) {
         return ajax('post', uri, data);
     };
 
+    /**
+     * @param {String} uri
+     * @param {Object} data
+     *
+     * @returns {promise}
+     */
     api.put = function(uri, data) {
         return ajax('put', uri, data);
     };

@@ -1,1 +1,1 @@
-{"version":3,"file":"window-scroll.d.ts","sourceRoot":"","sources":["../../../packages/components/window-scroll/window-scroll.js"],"names":[],"mappings":"AAMiB;qBAaF,WAAW,WACX,MAAM;EAmCpB"}
+{"version":3,"file":"window-scroll.d.ts","sourceRoot":"","sources":["../../../packages/components/window-scroll/window-scroll.js"],"names":[],"mappings":"AAMiB;qBAaF,WAAW;QAEK,MAAM;;EAmCpC"}

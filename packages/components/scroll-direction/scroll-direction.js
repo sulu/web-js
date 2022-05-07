@@ -19,6 +19,8 @@ module.exports = function ScrollDirection() {
      *
      * @param {HTMLElement} el
      * @param {object} options
+     * @param {String} options.upClass
+     * @param {String} options.downClass
      */
     scrollDirection.initialize = function initialize(el, options) {
         scrollDirection.direction = null;

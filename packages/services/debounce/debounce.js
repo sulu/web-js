@@ -5,7 +5,11 @@
 /**
  * Extracted from UnderscoreJS
  *
- * @ignore
+ * @param {Function} func
+ * @param {Number} wait
+ * @param {Boolean} immediate
+ *
+ * @returns {(function(): void)|*}
  */
 module.exports = function debounce(func, wait, immediate) {
     var timeout;

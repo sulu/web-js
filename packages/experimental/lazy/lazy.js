@@ -11,18 +11,14 @@ var web = require('./../../core/core');
  * Web container for all components and services.
  */
 var lazy = (function lazy() {
-    var lazy = {
-        componentRegistry: {},
-        serviceRegistry: {},
-        deferredComponents: {},
-        deferredServices: {},
-    };
+    var lazy = {};
 
     /**
      * For initialize the lazy loader we need component and service registry.
      *
-     * @param {Object} componentRegistry
-     * @param {Object} serviceRegistry
+     * @param {String} name
+     * @param {Object} component
+     * @method registerComponent
      */
     lazy.registerComponent = function registerComponent(name, component) {
         lazy.componentRegistry[name] = component;
@@ -31,8 +27,9 @@ var lazy = (function lazy() {
     /**
      * For initialize the lazy loader we need component and service registry.
      *
-     * @param {Object} componentRegistry
-     * @param {Object} serviceRegistry
+     * @param {String} name
+     * @param {Object} service
+     * @method registerService
      */
     lazy.registerService = function registerService(name, service) {
         lazy.serviceRegistry[name] = service;
@@ -58,7 +55,7 @@ var lazy = (function lazy() {
     };
 
     /**
-     * Load compnent.
+     * Load component.
      *
      * @param {String} componentName
      */
@@ -91,7 +88,7 @@ var lazy = (function lazy() {
     /**
      * Load service.
      *
-     * @param {String} module
+     * @param {String} serviceName
      */
     lazy.loadService = function loadService(serviceName) {
         lazy.serviceRegistry[serviceName](function(file) {

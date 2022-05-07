@@ -1,10 +1,12 @@
 {
-    "include": ["packages/**/*"],
-    "compilerOptions": {
-      "allowJs": true,
-      "declaration": true,
-      "emitDeclarationOnly": true,
-      "outDir": "types",
-      "declarationMap": true
-    }
+  "include": [
+    "packages/**/*"
+  ],
+  "compilerOptions": {
+    "allowJs": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": "types",
+    "declarationMap": true
   }
+}

@@ -1,1 +1,1 @@
-{"version":3,"file":"scroll-direction.d.ts","sourceRoot":"","sources":["../../../packages/components/scroll-direction/scroll-direction.js"],"names":[],"mappings":"AAMiB;qBAaF,WAAW,WACX,MAAM;EAwDpB"}
+{"version":3,"file":"scroll-direction.d.ts","sourceRoot":"","sources":["../../../packages/components/scroll-direction/scroll-direction.js"],"names":[],"mappings":"AAMiB;qBAaF,WAAW;QAEK,OAAO;QACP,SAAS;;EAwDvC"}

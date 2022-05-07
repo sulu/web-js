@@ -19,6 +19,7 @@ module.exports = function WindowScroll() {
      *
      * @param {HTMLElement} el
      * @param {object} options
+     * @param {Number} options.offset
      */
     windowScroll.initialize = function initialize(el, options) {
         windowScroll.isTop = true;

@@ -20,6 +20,8 @@ module.exports = function Truncate() {
      *
      * @param {HTMLElement} el
      * @param {object} options
+     * @param {String} options.separator
+     * @param {Number} options.debounceDelay
      */
     truncate.initialize = function initialize(el, options) {
         truncate.$el = $(el);

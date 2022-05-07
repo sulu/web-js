@@ -1,1 +1,1 @@
-{"version":3,"file":"expand.d.ts","sourceRoot":"","sources":["../../../packages/components/expand/expand.js"],"names":[],"mappings":"AAIiB;qBAiBF,WAAW,WACX,MAAM;EAkDpB"}
+{"version":3,"file":"expand.d.ts","sourceRoot":"","sources":["../../../packages/components/expand/expand.js"],"names":[],"mappings":"AAIiB;qBAiBF,WAAW;QAEK,QAAQ;QACP,UAAU;QACX,SAAS;;EAkDvC"}

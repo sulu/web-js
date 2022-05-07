@@ -19,6 +19,9 @@ module.exports = function ScrollMenu() {
      *
      * @param {HTMLElement} el
      * @param {object} options
+     * @param {String} options.upClass
+     * @param {String} options.downClass
+     * @param {Number} options.tolerance
      */
     scrollMenu.initialize = function initialize(el, options) {
         scrollMenu.direction = null;

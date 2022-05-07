@@ -21,6 +21,9 @@ module.exports = function Expand() {
      *
      * @param {HTMLElement} el
      * @param {object} options
+     * @param {String} options.modifier
+     * @param {Boolean} options.closeOnEsc
+     * @param {String} options.container
      */
     expand.initialize = function initialize(el, options) {
         expand.el = el;

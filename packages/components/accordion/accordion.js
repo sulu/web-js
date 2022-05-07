@@ -42,6 +42,7 @@ module.exports = function Accordion() {
      *
      * @param {HTMLElement} el
      * @param {object} options
+     * @param {String} options.modifier
      */
     accordion.initialize = function initialize(el, options) {
         var i;

@@ -17,6 +17,7 @@ module.exports = function Toggle() {
      *
      * @param {HTMLElement} el
      * @param {object} options
+     * @param {String} options.modifier
      */
     toggle.initialize = function initialize(el, options) {
         toggle.el = el;

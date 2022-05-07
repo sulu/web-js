@@ -1,1 +1,1 @@
-{"version":3,"file":"truncate.d.ts","sourceRoot":"","sources":["../../../packages/components/truncate/truncate.js"],"names":[],"mappings":"AAOiB;qBAaF,WAAW,WACX,MAAM;EAkDpB"}
+{"version":3,"file":"truncate.d.ts","sourceRoot":"","sources":["../../../packages/components/truncate/truncate.js"],"names":[],"mappings":"AAOiB;qBAaF,WAAW;QAEK,SAAS;QACT,aAAa;;EAkD3C"}
