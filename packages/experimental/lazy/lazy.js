@@ -11,7 +11,12 @@ var web = require('./../../core/core');
  * Web container for all components and services.
  */
 var lazy = (function lazy() {
-    var lazy = {};
+    var lazy = {
+        componentRegistry: {},
+        serviceRegistry: {},
+        deferredComponents: {},
+        deferredServices: {},
+    };
 
     /**
      * For initialize the lazy loader we need component and service registry.
