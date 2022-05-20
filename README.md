@@ -146,12 +146,12 @@ import Test from './components/test'
 import Other from './components/more'
 import Log from './services/log';
 
-// services
-web.registerService('logger', Log);
-
 // components
 web.registerComponent('test', Test);
 web.registerComponent('more', Test, { defaultOption: 'defaultValue' });
+
+// services
+web.registerService('logger', Log);
 ```
 
 ### Embedding in template
@@ -161,6 +161,24 @@ For efficient handling it's recommended to use it with a template engine like tw
 #### Twig
 
 For twig embedding see the [web component twig extension](https://github.com/sulu/web-twig).
+
+```twig
+<button id="{{ prepare_component('test') }}">
+    Say Hello
+</button>
+
+<button id="{{ prepare_component('test') }}">
+    Say Bye
+</button>
+
+{% do prepare_service('logger', 'log', ['Hello']) %}
+
+<script src="js/main.js"></script>
+<script>
+    web.startComponents({{ get_components() }});
+    web.callServices({{ get_services() }});
+</script>
+```
 
 #### HTML
 
@@ -190,6 +208,27 @@ You can also use without a template engine and by calling the startComponents an
 
 The `@sulu/web-js` provides some [`components`](packages/components)  and [`services`](packages/services)
 which can be registered in your container and be used.
+
+## Content Security Policy
+
+If you want to work with CSP and avoid inline scripts you can just write the
+components into a data attribute and read it from there. E.g.:
+
+```html
+<div id="app" data-components="[
+        {name: 'test', id: 'test-1', { text: 'Hello' }}, 
+        {name: 'test', id: 'test-2', { text: 'Bye' }},
+    ]"
+
+    data-services="[
+        {name: 'logger', func: 'log', args: ['Hello']},
+    ]"
+>
+</div>
+<script src="js/main.js"></script>
+```
+
+Then the data attirbute can be read in the main.js and the components started there.
 
 ## Web CSS
 
