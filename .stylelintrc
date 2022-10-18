@@ -1,3 +1,6 @@
 {
-    "extends": "stylelint-config-ma"
+    "extends": "stylelint-config-ma",
+    "plugins": [
+        "stylelint-scss"
+    ]
 }
