@@ -1,3 +1,136 @@
+# 3.0.0
+
+## Upgrade a class components with initialize method
+
+**Before**
+
+```js
+export default class {
+    initialize(el, options) {
+        this.text = options.text;
+        el.onclick = this.say;
+    }
+
+    say() {
+        alert(this.text);
+    }
+}
+```
+
+**After**
+
+```js
+export default class {
+    constructor(el, options) {
+        this.text = options.text;
+        el.onclick = this.say;
+    }
+
+    say() {
+        alert(this.text);
+    }
+}
+```
+
+## Upgrade revealing pattern component with initialize method
+
+**Before**
+
+```js
+module.exports = (function() {
+    var test = {};
+
+    test.initialize = function(el, options) {
+        test.text = options.text;
+        el.onclick = this.say;
+    };
+
+    test.say = function() {
+        alert(test.text);
+    }
+
+    return {
+        initialize: test.initialize,
+        say: test.say,
+    };
+});
+```
+
+**After**
+
+```js
+// to a class component
+
+export default class {
+    constructor(el, options) {
+        test.text = options.text;
+        el.onclick = this.say;
+    }
+
+    say() {
+        alert(this.text);
+    }
+}
+
+// or to a function component
+
+export default function(el, options) {
+    el.onclick = function() {
+        alert(options.text);
+    };
+}
+
+// or to a revealing module compatible component
+
+export default function(el, options) {
+    var test = {
+        test: options.text,
+    };
+
+    test.say = function() {
+        alert(test.text);
+    }
+
+    el.onclick = test.say;
+
+    return {
+        say: test.say,
+    };
+}
+```
+
+## Upgrade object components with initialize
+
+**Before**
+
+```js
+module.exports = {
+    initialize: function(el, options) {
+        this.text = options.text;
+        el.onclick = this.say;
+    },
+
+    say: function() {
+        alert(this.text);
+    },
+};
+```
+
+**After**
+
+```js
+export default class {
+    constructor(el, options) {
+        test.text = options.text;
+        el.onclick = this.say;
+    }
+
+    say() {
+        alert(this.text);
+    }
+}
+```
+
 # 2.0.0
 
 ## jQuery removed from web component

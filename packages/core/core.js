@@ -114,8 +114,15 @@ var web = (function web() {
 
         // Instantiate object from base component and init it
         Component = web.getBaseComponent(name);
-        instance = new Component();
-        instance.initialize(web.getElement(id), Object.assign({}, componentDefaultOptions[name], options));
+
+        if (Component.length === 0) {
+            console.warn('@sulu/web: Component "' + name + '" with initialize is deprecated and should be upgraded.');
+
+            instance = new Component();
+            instance.initialize(web.getElement(id), Object.assign({}, componentDefaultOptions[name], options));
+        } else {
+            instance = new Component(web.getElement(id), Object.assign({}, componentDefaultOptions[name], options));
+        }
 
         // Add component instance to registry
         componentInstances[id] = instance;

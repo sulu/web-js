@@ -1,5 +1,11 @@
 # Changes
 
+## 2.5.0
+
+ - DEPRECATION: The usage of the revealing module pattern with initialize return is deprecated in favor of ES6 class or function components.
+ - DEPRECATION: The usage of object components is deprecated in favor of ES6 class or function components.
+ - DEPRECATION: The `initialize` method is deprecated in favor of constructor in class or and direct arguments in function based components.
+
 ## 2.4.1
 
  - BUGFIX: Fix Truncate component on window load
