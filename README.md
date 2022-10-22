@@ -48,13 +48,13 @@ import 'core-js/features/object/assign';
 
 ### Create your first component
 
-A component can be created using different js patterns:
+A component can be created using different JS patterns:
 
  - [JS Class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
  - [JS Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions)
  - [Revealing pattern](https://addyosmani.com/resources/essentialjsdesignpatterns/book/#revealingmodulepatternjavascript)
  - [Prototype pattern](https://addyosmani.com/resources/essentialjsdesignpatterns/book/#prototypepatternjavascript)
- - and more which works with multiple instances you simple need to create a initialize method
+ - and more which works with multiple instances
 
 **Class Component**
 
