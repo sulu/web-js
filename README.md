@@ -1,4 +1,4 @@
-[![CircleCi](https://circleci.com/gh/sulu/web-js.png?style=shield)](https://circleci.com/gh/sulu/web-js)
+[![Github CI](https://img.shields.io/github/workflow/status/sulu/web-js/CI.svg?label=Tests)](https://github.com/sulu/web-js/actions)
 [![npm](https://img.shields.io/npm/v/@sulu/web.svg)](https://www.npmjs.com/package/@sulu/web)
 [![Size](https://img.shields.io/github/size/sulu/web-js/packages/core/core.js.svg)](https://github.com/sulu/web-js/blob/master/packages/core/core.js)
 [![Install Size](https://packagephobia.now.sh/badge?p=@sulu/web)](https://packagephobia.now.sh/result?p=@sulu/web)
@@ -13,13 +13,14 @@ gives you simple and efficient way to handle your javascript components over twi
 **NPM**
 
 ```bash
+# NPM:
 npm install @sulu/web
-```
 
-**Yarn**
-
-```bash
+# Yarn
 yarn add @sulu/web
+
+# pnpm
+pnpm add @sulu/web
 ```
 
 ## IE Support
@@ -27,13 +28,14 @@ yarn add @sulu/web
 To Support IE 11 you need a polyfill for `object.assign` function e.g.:
 
 ```bash
+# NPM:
 npm install core-js --save-dev
-```
 
-or
+# Yarn
+yarn add core-js
 
-```bash
-yarn install core-js --dev
+# pnpm
+pnpm add core-js
 ```
 
 and at the top of your main.js file require the polyfill:
@@ -49,6 +51,7 @@ import 'core-js/features/object/assign';
 A component can be created using different js patterns:
 
  - [JS Class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
+ - [JS Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions)
  - [Revealing pattern](https://addyosmani.com/resources/essentialjsdesignpatterns/book/#revealingmodulepatternjavascript)
  - [Prototype pattern](https://addyosmani.com/resources/essentialjsdesignpatterns/book/#prototypepatternjavascript)
  - and more which works with multiple instances you simple need to create a initialize method
@@ -99,13 +102,13 @@ module.exports = {
 
 ```js
 import web from '@sulu/web';
-import Test from './components/test'
-import Other from './components/more'
+import Test from './components/test-class'
+import more from './components/test-function'
 import Log from './services/log';
 
 // components
 web.registerComponent('test', Test);
-web.registerComponent('more', Test, { defaultOption: 'defaultValue' });
+web.registerComponent('more', more, { defaultOption: 'defaultValue' });
 
 // services
 web.registerService('logger', Log);
@@ -172,7 +175,7 @@ If you want to work with CSP and avoid inline scripts you can just write the
 components into a data attribute and read it from there. E.g.:
 
 ```html
-<div id="app" data-components="[
+<script id="app" data-components="[
         {name: 'test', id: 'test-1', { text: 'Hello' }}, 
         {name: 'test', id: 'test-2', { text: 'Bye' }},
     ]"
@@ -180,12 +183,11 @@ components into a data attribute and read it from there. E.g.:
     data-services="[
         {name: 'logger', func: 'log', args: ['Hello']},
     ]"
->
-</div>
-<script src="js/main.js"></script>
+    
+    src="js/main.js"></script>
 ```
 
-Then the data attirbute can be read in the main.js and the components started there.
+Then the data attribute can be read in the main.js and the components started there.
 
 ## Web CSS
 
