@@ -4,19 +4,23 @@
 
 var passiveEvents = require('../../services/passive-events/passive-events');
 
-module.exports = function WindowScroll() {
+/**
+ * @example
+ * <div id="window-scroll" class="Menu">
+ *    Lorem ipsum ...
+ * </div>
+ *
+ * import WindowScroll from '@sulu/web/packages/components/window-scroll';
+ * var component = new WindowScroll();
+ * component.initialize(document.getElementById('window-scroll'), {});
+ *
+ * @param {HTMLElement} el
+ * @param {object} options
+ */
+module.exports = function WindowScroll(el, options) {
     var windowScroll = {};
 
     /**
-     * @example
-     * <div id="window-scroll" class="Menu">
-     *    Lorem ipsum ...
-     * </div>
-     *
-     * import WindowScroll from '@sulu/web/packages/components/window-scroll';
-     * var component = new WindowScroll();
-     * component.initialize(document.getElementById('window-scroll'), {});
-     *
      * @param {HTMLElement} el
      * @param {object} options
      */
@@ -49,6 +53,10 @@ module.exports = function WindowScroll() {
             windowScroll.isTop = isTop;
         }
     };
+
+    if (el) {
+        windowScroll.initialize(el, options);
+    }
 
     return {
         initialize: windowScroll.initialize,

@@ -2,44 +2,48 @@
 
 'use strict';
 
-module.exports = function Accordion() {
+/**
+ * Accordion is build on top of the aria attributes by the w3c example:
+ *     https://www.w3.org/TR/wai-aria-practices-1.1/examples/accordion/accordion.html
+ *
+ * @example
+ * <div id="accordion">
+ *    <section class="collapse">
+ *        <h4 id="accordion-title-1">
+ *            <button id="accordion-button-1" aria-expanded="false" aria-controls="accordion-body-1">
+ *                Header 1
+ *            </button>
+ *        </h4>
+ *
+ *        <div id="accordion-body-1" aria-hidden="true" aria-labelledby="accordion-button-1">
+ *            Content 1
+ *        </div>
+ *    </section>
+ *
+ *    <section class="collapse">
+ *        <h4 id="accordion-title-2">
+ *            <button id="accordion-button-2" aria-expanded="false" aria-controls="accordion-body-2">
+ *                Header 2
+ *            </button>
+ *        </h4>
+ *
+ *        <div id="accordion-body-2" aria-hidden="true" aria-labelledby="accordion-button-2">
+ *            Content 2
+ *        </div>
+ *    </section>
+ * </div>
+ *
+ * import Accordion from '@sulu/web/packages/components/accordion/accordion';
+ * var component = new Accordion();
+ * component.initialize(document.getElementById('accordion'), {});
+ *
+ * @param {HTMLElement} el
+ * @param {object} options
+ */
+module.exports = function Accordion(el, options) {
     var accordion = {};
 
     /**
-     * Accordion is build on top of the aria attributes by the w3c example:
-     *     https://www.w3.org/TR/wai-aria-practices-1.1/examples/accordion/accordion.html
-     *
-     * @example
-     * <div id="accordion">
-     *    <section class="collapse">
-     *        <h4 id="accordion-title-1">
-     *            <button id="accordion-button-1" aria-expanded="false" aria-controls="accordion-body-1">
-     *                Header 1
-     *            </button>
-     *        </h4>
-     *
-     *        <div id="accordion-body-1" aria-hidden="true" aria-labelledby="accordion-button-1">
-     *            Content 1
-     *        </div>
-     *    </section>
-     *
-     *    <section class="collapse">
-     *        <h4 id="accordion-title-2">
-     *            <button id="accordion-button-2" aria-expanded="false" aria-controls="accordion-body-2">
-     *                Header 2
-     *            </button>
-     *        </h4>
-     *
-     *        <div id="accordion-body-2" aria-hidden="true" aria-labelledby="accordion-button-2">
-     *            Content 2
-     *        </div>
-     *    </section>
-     * </div>
-     *
-     * import Accordion from '@sulu/web/packages/components/accordion/accordion';
-     * var component = new Accordion();
-     * component.initialize(document.getElementById('accordion'), {});
-     *
      * @param {HTMLElement} el
      * @param {object} options
      */
@@ -111,6 +115,10 @@ module.exports = function Accordion() {
                 : 'true'
         );
     };
+
+    if (el) {
+        accordion.initialize(el, options);
+    }
 
     return {
         initialize: accordion.initialize,

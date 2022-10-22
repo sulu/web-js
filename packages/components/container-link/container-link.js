@@ -4,26 +4,26 @@
 
 var $ = require('jquery');
 
-module.exports = function ContainerLink() {
+/**
+ * @example
+ * <div id="container-link" class="menu">
+ *    Lorem ipsum ...
+ *
+ *    <a href="#1">Link 1</a> <!-- Click on container will open this link -->
+ *    <a href="#2">Link 2</a>
+ * </div>
+ *
+ * import ContainerLink from '@sulu/web/packages/components/container-link';
+ * var component = new ContainerLink();
+ * component.initialize(document.getElementById('container-link'), {});
+ *
+ * @see scss/tools/container-link/_container-link.scss for css only solution
+ *
+ * @param {HTMLElement} el
+ */
+module.exports = function ContainerLink(el) {
     var containerLink = {};
 
-    /**
-     * @example
-     * <div id="container-link" class="menu">
-     *    Lorem ipsum ...
-     *
-     *    <a href="#1">Link 1</a> <!-- Click on container will open this link -->
-     *    <a href="#2">Link 2</a>
-     * </div>
-     *
-     * import ContainerLink from '@sulu/web/packages/components/container-link';
-     * var component = new ContainerLink();
-     * component.initialize(document.getElementById('container-link'), {});
-     *
-     * @see scss/tools/container-link/_container-link.scss for css only solution
-     *
-     * @param {HTMLElement} el
-     */
     containerLink.initialize = function initialize(el) {
         containerLink.$el = $(el);
 
@@ -55,8 +55,11 @@ module.exports = function ContainerLink() {
         window.location.href = url;
     };
 
+    if (el) {
+        containerLink.initialize(el);
+    }
+
     return {
         initialize: containerLink.initialize,
     };
 };
-

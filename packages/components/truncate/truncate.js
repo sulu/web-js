@@ -5,19 +5,23 @@
 var $ = require('jquery');
 var debounce = require('../../services/debounce/debounce');
 
-module.exports = function Truncate() {
+/**
+ * @example
+ * <div id="truncate" style="overflow: hidden; line-height: 20px; max-height: 60px;">
+ *    Lorem ipsum ...
+ * </div>
+ *
+ * import Truncate from '@sulu/web/packages/components/truncate';
+ * var component = new Truncate();
+ * component.initialize(document.getElementById('truncate'), {});
+ *
+ * @param {HTMLElement} el
+ * @param {object} options
+ */
+module.exports = function Truncate(el, options) {
     var truncate = {};
 
     /**
-     * @example
-     * <div id="truncate" style="overflow: hidden; line-height: 20px; max-height: 60px;">
-     *    Lorem ipsum ...
-     * </div>
-     *
-     * import Truncate from '@sulu/web/packages/components/truncate';
-     * var component = new Truncate();
-     * component.initialize(document.getElementById('truncate'), {});
-     *
      * @param {HTMLElement} el
      * @param {object} options
      */
@@ -65,6 +69,10 @@ module.exports = function Truncate() {
             });
         }
     };
+
+    if (el) {
+        truncate.initialize(el, options);
+    }
 
     return {
         initialize: truncate.initialize,
