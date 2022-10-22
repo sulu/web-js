@@ -2,23 +2,27 @@
 
 'use strict';
 
-module.exports = function Expand() {
+/**
+ * @example
+ * <button id="expand" class="button">
+ *    Lorem ipsum ...
+ * </button>
+ *
+ * <div id="expand-container" class="container">
+ *     Container
+ * </div>
+ *
+ * import Expand from '@sulu/web/packages/components/expand';
+ * var component = new Expand();
+ * component.initialize(document.getElementById('expand'), {});
+ *
+ * @param {HTMLElement} el
+ * @param {object} options
+ */
+module.exports = function Expand(el, options) {
     var expand = {};
 
     /**
-     * @example
-     * <button id="expand" class="button">
-     *    Lorem ipsum ...
-     * </button>
-     *
-     * <div id="expand-container" class="container">
-     *     Container
-     * </div>
-     *
-     * import Expand from '@sulu/web/packages/components/expand';
-     * var component = new Expand();
-     * component.initialize(document.getElementById('expand'), {});
-     *
      * @param {HTMLElement} el
      * @param {object} options
      */
@@ -66,6 +70,10 @@ module.exports = function Expand() {
         expand.el.classList.remove(expand.toggleButtonClass);
         expand.container.classList.remove(expand.toggleContainerClass);
     };
+
+    if (el) {
+        expand.initialize(el, options);
+    }
 
     return {
         initialize: expand.initialize,

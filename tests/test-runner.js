@@ -3,6 +3,7 @@
 global.window = {};
 global.testRunnerErrorCounter = 0;
 global.testRunnerTestCounter = 0;
+global.testRunnerWarnCounter = 0;
 global.it = (name, testFunction) => {
     ++global.testRunnerTestCounter;
 
@@ -19,34 +20,49 @@ global.it = (name, testFunction) => {
     console.log((success ? 'OK  ' : 'FAIL ') + name);
 };
 
-const object1 = {
-    el: '1',
-};
-const object2 = {
-    el: '2',
-};
-
 global.document = {};
 global.document.getElementById = function(id) {
     if ('object-1' === id) {
-        return object1;
+        return {
+            el: '1',
+        };
     } else if ('object-2' === id) {
-        return object2;
+        return {
+            el: '2',
+        };
+    } else if ('accordion-1' === id) {
+        return {
+            children: [{querySelector: () => {}}],
+        };
     }
 };
 
-global.console.warn = () => {};
+const expectedWarnings = 8;
+global.console.warn = () => {
+    ++global.testRunnerWarnCounter;
+};
 
-const coreTest = require('./core/core.test.js');
-const coreLegacyTest = require('./core/core.legacy.test.js');
-
-coreTest();
-coreLegacyTest();
+(require('./core/core.test.js'))();
+(require('./core/core.legacy.test.js'))();
+(require('./components/accordion/accordion.test.js'))();
+(require('./components/container-link/container-link.test.js'))();
+(require('./components/expand/expand.test.js'))();
+(require('./components/scroll-direction/scroll-direction.test.js'))();
+(require('./components/scroll-menu/scroll-menu.test.js'))();
+(require('./components/tabs/tabs.test.js'))();
+(require('./components/toggle/toggle.test.js'))();
+(require('./components/truncate/truncate.test.js'))();
+(require('./components/window-scroll/window-scroll.test.js'))();
 
 console.log(' ');
 
 if (global.testRunnerErrorCounter !== 0) {
     console.error(global.testRunnerErrorCounter  + ' from ' + global.testRunnerTestCounter +  ' tests failed!');
+    process.exit(1);
+}
+
+if (global.testRunnerWarnCounter !== expectedWarnings) {
+    console.error(global.testRunnerWarnCounter  + ' warnings thrown ' + expectedWarnings + ' were expected!');
     process.exit(1);
 }
 

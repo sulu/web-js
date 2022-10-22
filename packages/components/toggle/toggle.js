@@ -2,19 +2,23 @@
 
 'use strict';
 
-module.exports = function Toggle() {
+/**
+ * @example
+ * <button id="toggle" class="button">
+ *    Lorem ipsum ...
+ * </button>
+ *
+ * import Toggle from '@sulu/web/packages/components/toggle/toggle';
+ * var component = new Toggle();
+ * component.initialize(document.getElementById('toggle'), {});
+ *
+ * @param {HTMLElement} el
+ * @param {object} options
+ */
+module.exports = function Toggle(el, options) {
     var toggle = {};
 
     /**
-     * @example
-     * <button id="toggle" class="button">
-     *    Lorem ipsum ...
-     * </button>
-     *
-     * import Toggle from '@sulu/web/packages/components/toggle/toggle';
-     * var component = new Toggle();
-     * component.initialize(document.getElementById('toggle'), {});
-     *
      * @param {HTMLElement} el
      * @param {object} options
      */
@@ -42,6 +46,10 @@ module.exports = function Toggle() {
     toggle.toggleClass = function toggleClass() {
         toggle.el.classList.toggle(toggle.toggleButtonClass);
     };
+
+    if (el) {
+        toggle.initialize(el, options);
+    }
 
     return {
         initialize: toggle.initialize,

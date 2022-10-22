@@ -4,19 +4,23 @@
 
 var passiveEvents = require('../../services/passive-events/passive-events');
 
-module.exports = function ScrollMenu() {
+/**
+ * @example
+ * <div id="scroll-menu" class="menu">
+ *    Lorem ipsum ...
+ * </div>
+ *
+ * import ScrollMenu from '@sulu/web/packages/components/scroll-menu';
+ * var component = new ScrollMenu();
+ * component.initialize(document.getElementById('scroll-menu'), {});
+ *
+ * @param {HTMLElement} el
+ * @param {object} options
+ */
+module.exports = function ScrollMenu(el, options) {
     var scrollMenu = {};
 
     /**
-     * @example
-     * <div id="scroll-menu" class="menu">
-     *    Lorem ipsum ...
-     * </div>
-     *
-     * import ScrollMenu from '@sulu/web/packages/components/scroll-menu';
-     * var component = new ScrollMenu();
-     * component.initialize(document.getElementById('scroll-menu'), {});
-     *
      * @param {HTMLElement} el
      * @param {object} options
      */
@@ -84,6 +88,10 @@ module.exports = function ScrollMenu() {
             el.classList.add(scrollMenu.upClass);
         }
     };
+
+    if (el) {
+        scrollMenu.initialize(el, options);
+    }
 
     return {
         initialize: scrollMenu.initialize,

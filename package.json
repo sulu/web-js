@@ -29,6 +29,7 @@
     "jquery": ">=1.7.2"
   },
   "devDependencies": {
+    "jquery": ">=1.7.2",
     "eslint": "^4.19.1",
     "eslint-config-ma": "^1.0.1",
     "postcss": "^8.4.7",

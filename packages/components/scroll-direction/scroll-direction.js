@@ -4,19 +4,23 @@
 
 var passiveEvents = require('../../services/passive-events/passive-events');
 
-module.exports = function ScrollDirection() {
+/**
+ * @example
+ * <div id="scroll-direction" class="menu">
+ *    Lorem ipsum ...
+ * </div>
+ *
+ * import ScrollDirection from '@sulu/web/packages/components/scroll-direction';
+ * var component = new ScrollDirection();
+ * component.initialize(document.getElementById('scroll-direction'), {});
+ *
+ * @param {HTMLElement} el
+ * @param {object} options
+ */
+module.exports = function ScrollDirection(el, options) {
     var scrollDirection = {};
 
     /**
-     * @example
-     * <div id="scroll-direction" class="menu">
-     *    Lorem ipsum ...
-     * </div>
-     *
-     * import ScrollDirection from '@sulu/web/packages/components/scroll-direction';
-     * var component = new ScrollDirection();
-     * component.initialize(document.getElementById('scroll-direction'), {});
-     *
      * @param {HTMLElement} el
      * @param {object} options
      */
@@ -70,6 +74,10 @@ module.exports = function ScrollDirection() {
             el.classList.add(scrollDirection.upClass);
         }
     };
+
+    if (el) {
+        scrollDirection.initialize(el, options);
+    }
 
     return {
         initialize: scrollDirection.initialize,

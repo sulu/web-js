@@ -53,12 +53,12 @@ A component can be created using different js patterns:
  - [Prototype pattern](https://addyosmani.com/resources/essentialjsdesignpatterns/book/#prototypepatternjavascript)
  - and more which works with multiple instances you simple need to create a initialize method
 
-**Using ECMAScript 2015 class**
+**Class Component**
 
 ```js
 // js/components/test-class.js
 export default class Test {
-    initialize(el, options) {
+    constructor(el, options) {
         this.text = options.text;
         el.onclick = this.say;
     }
@@ -69,59 +69,16 @@ export default class Test {
 }
 ```
 
-<details>
-
-<summary>
-**Using Revealing pattern**
-</summary>
+**Function Component**
 
 ```js
-// js/components/test-revealing-pattern.js
-
-module.exports = (function() {
-    var test = {};
-
-    test.initialize = function(el, options) {
-        test.text = options.text;
-        el.onclick = this.say;
+// js/components/test-function.js
+export default function(el, options) {
+    el.onclick = function() {
+        alert(options.text);
     };
-
-    test.say = function() {
-        alert(test.text);
-    }
-
-    return {
-        initialize: test.initialize,
-        say: test.say,
-    };
-});
+}
 ```
-
-</details>
-
-<details>
-
-<summary>
-**Using Prototype pattern**
-</summary>
-
-```js
-// js/components/test-prototype-pattern.js
-var test = function() {};
-
-test.prototype.initialize = function(el, options) {
-    this.text = options.text;
-    el.onclick = this.say;
-};
-
-test.prototype.say = function() {
-    alert(this.test);
-};
-
-module.exports = test;
-```
-
-</details>
 
 ### Create your first service
 
@@ -134,7 +91,7 @@ Typically usages are running tracking code functions.
 module.exports = {
    log: function(text) {
        console.log(text);
-   }    
+   }
 };
 ```
 
