@@ -45,7 +45,7 @@ jobs:
               run: npm test
 
     lint:
-        name: "Tests"
+        name: "Lint"
         runs-on: ubuntu-latest
 
         env:
