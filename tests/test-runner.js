@@ -12,7 +12,7 @@ global.it = (name, testFunction) => {
     try {
         testFunction();
     } catch (e) {
-        ++global.testRunnerTestCounter;
+        ++global.testRunnerErrorCounter;
         console.error(e);
         success = false;
     }
