@@ -1,0 +1,69 @@
+name: CI
+
+on:
+    pull_request:
+    push:
+        branches:
+            - '[0-9]+.x'
+            - '[0-9]+.[0-9]+'
+            - 'main'
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    tests:
+        name: "Tests (Node ${{ matrix.node-version }})"
+        runs-on: ubuntu-latest
+
+        env:
+            COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+        strategy:
+            fail-fast: false
+            matrix:
+                include:
+                    - node-version: '14'
+                    - node-version: '16'
+
+        steps:
+            - name: Checkout project
+              uses: actions/checkout@v2
+
+            - name: Install and configure Node
+              uses: actions/setup-node@v2-beta
+              with:
+                  node-version: ${{ matrix.node-version }}
+
+            - name: Install npm dependencies
+              uses: bahmutov/npm-install@v1
+              with:
+                  useLockFile: false
+
+            - name: Test JavaScript code
+              run: npm test
+
+    lint:
+        name: "Tests"
+        runs-on: ubuntu-latest
+
+        env:
+            COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+        steps:
+            - name: Checkout project
+              uses: actions/checkout@v2
+
+            - name: Install and configure Node
+              uses: actions/setup-node@v2-beta
+              with:
+                  node-version: 16
+
+            - name: Install npm dependencies
+              uses: bahmutov/npm-install@v1
+              with:
+                  useLockFile: false
+
+            - name: Lint JavaScript code
+              run: npm run lint
