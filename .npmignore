@@ -1,5 +1,5 @@
-.circleci
-.idea
+.idea/
 .eslintrc
 .stylelintrc
+.github/
 tests/
