@@ -70,10 +70,15 @@ module.exports = function Tabs() {
      * </div>
      *
      * @param {HTMLElement} el
+     * @param {{ignoreTabIndex?: boolean}} options
      */
-    tabs.initialize = function initialize(el) {
+    tabs.initialize = function initialize(el, options) {
+        tabs.el = el;
+        tabs.options = options;
         tabs.items = [];
-        el.querySelector('[role=tablist]').querySelectorAll('[role=tab]').forEach(function(item) {
+
+        var tabList = el.matches('[role=tablist]') ? el : el.querySelector('[role=tablist]');
+        tabList.querySelectorAll('[role=tab]').forEach(function(item) {
             tabs.items.push({
                 button: item,
                 body: document.getElementById(item.getAttribute('aria-controls')),
@@ -123,14 +128,28 @@ module.exports = function Tabs() {
             if (tabs.items[i] !== item) {
                 tabs.items[i].body.setAttribute('hidden', true);
                 tabs.items[i].button.setAttribute('aria-selected', 'false');
-                tabs.items[i].button.setAttribute('tabindex', '-1');
+
+                if (tabs.options.ignoreTabIndex !== true) {
+                    tabs.items[i].button.setAttribute('tabindex', '-1');
+                }
             }
         }
 
         // Toggle current item
         item.button.setAttribute('aria-selected', 'true');
-        item.button.removeAttribute('tabindex');
+
+        if (tabs.options.ignoreTabIndex !== true) {
+            item.button.removeAttribute('tabindex');
+        }
+
         item.body.removeAttribute('hidden');
+
+        tabs.el.dispatchEvent(new CustomEvent('tabChanged', {
+            detail: {
+                tab: item.button,
+                tabPanel: item.body,
+            },
+        }));
     };
 
     return {
