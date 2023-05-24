@@ -29,12 +29,15 @@
     "jquery": ">=1.7.2"
   },
   "devDependencies": {
-    "jquery": ">=1.7.2",
     "eslint": "^4.19.1",
     "eslint-config-ma": "^1.0.1",
+    "jquery": ">=1.7.2",
     "postcss": "^8.4.7",
     "postcss-scss": "^4.0.3",
     "stylelint": "^14.0.0",
     "stylelint-config-ma": "^1.1.9"
+  },
+  "dependencies": {
+    "typescript": "^5.0.4"
   }
 }
