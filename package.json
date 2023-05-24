@@ -1,6 +1,6 @@
 {
   "name": "@sulu/web",
-  "version": "2.5.0",
+  "version": "2.4.1",
   "description": "Manage your js components",
   "main": "packages/core/core.js",
   "typings": "./types/core/core.d.ts",
