@@ -3,6 +3,7 @@
   "version": "2.5.0",
   "description": "Manage your js components",
   "main": "packages/core/core.js",
+  "typings": "./types/core/core.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/sulu/web-js.git"
@@ -36,8 +37,5 @@
     "postcss-scss": "^4.0.3",
     "stylelint": "^14.0.0",
     "stylelint-config-ma": "^1.1.9"
-  },
-  "dependencies": {
-    "typescript": "^5.0.4"
   }
 }
