@@ -1,4 +1,4 @@
-[![Github CI](https://img.shields.io/github/workflow/status/sulu/web-js/CI.svg?label=Tests)](https://github.com/sulu/web-js/actions)
+[![Github CI](https://img.shields.io/github/actions/workflow/status/sulu/web-js/ci.yaml)](https://github.com/sulu/web-js/actions)
 [![npm](https://img.shields.io/npm/v/@sulu/web.svg)](https://www.npmjs.com/package/@sulu/web)
 [![Size](https://img.shields.io/github/size/sulu/web-js/packages/core/core.js.svg)](https://github.com/sulu/web-js/blob/master/packages/core/core.js)
 [![Install Size](https://packagephobia.now.sh/badge?p=@sulu/web)](https://packagephobia.now.sh/result?p=@sulu/web)
@@ -172,6 +172,18 @@ Then the data attribute can be read in the main.js and the components started th
 
 Beside the `js` the `@sulu/web-js` is also shipped with some `scss` tools to make also creating css
 easier. They can be found in the [`scss`](packages/scss)  directory.
+
+## Alternatives
+
+Web JS is a very small component management library focused to have a very small layer
+to create component based architecture for your project and have all the logic
+in the project in your hands.
+
+If you search for bigger alternatives with more functionality, have a look at the following:
+
+ - [Stimulus](https://stimulus.hotwired.dev/) you might also want [Turbo](https://turbo.hotwired.dev/)
+ - [HTMX](https://htmx.org/)
+ - [Alpine.js](https://alpinejs.dev/)
 
 ## Version Update & Publish to NPM (docs for maintainers)
 

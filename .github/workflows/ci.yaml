@@ -29,10 +29,10 @@ jobs:
 
         steps:
             - name: Checkout project
-              uses: actions/checkout@v2
+              uses: actions/checkout@v4
 
             - name: Install and configure Node
-              uses: actions/setup-node@v2-beta
+              uses: actions/setup-node@v4
               with:
                   node-version: ${{ matrix.node-version }}
 
@@ -53,10 +53,10 @@ jobs:
 
         steps:
             - name: Checkout project
-              uses: actions/checkout@v2
+              uses: actions/checkout@v4
 
             - name: Install and configure Node
-              uses: actions/setup-node@v2-beta
+              uses: actions/setup-node@v4
               with:
                   node-version: 16
 
